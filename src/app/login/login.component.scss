@@ -1,0 +1,68 @@
+@mixin btHover {
+    text-decoration: none;
+    background-color: rgb(94, 94, 94);
+    transition: 0.3s background-color;
+}
+
+.loginField {
+    max-width: 800px;
+	margin: 100px auto;
+	padding: 0px 0;
+	height: 500px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.loginFields {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 50%;
+    border: 0;
+    padding: 15px;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+.loginSignupBtns:not(hover) {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: coral;
+    width: 50%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    transition: 0.3s background-color;
+}
+.loginSignupBtns:hover {
+    @include btHover()
+}
+.signupSpotContainer {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    float: right;
+    background: rgb(2,0,36);
+    background: linear-gradient(14deg, rgba(2,0,36,1) 0%, rgb(197, 66, 105) 45%, rgb(218, 12, 115) 97%);
+    z-index: 1;
+}
+.signupSpot{
+    
+    height: 100%;
+    margin: 80px auto;
+}
+.warning {
+    margin-top: 80px;
+    width: 50%;
+    height: 100%;
+    float: right;
+}
+.triangles {
+    height: 100%;
+    // border: 2px solid black;
+    position: absolute;
+    z-index: -1;
+}

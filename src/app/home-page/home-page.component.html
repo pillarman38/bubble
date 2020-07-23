@@ -1,0 +1,13 @@
+<div id="line">
+<div *ngFor="let bubble of bubbles">
+    <svg class="circle-chart" viewBox="0 0 33.83098862 33.83098862" xmlns="http://www.w3.org/2000/svg">
+    <circle class="circle-chart__background" stroke="#efefef" stroke-width="2" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431"></circle>
+    <circle class="circle-chart__circle" stroke="#00acc1" stroke-width="2" [attr.stroke-dasharray]="bubble.percentage" stroke-linecap="round" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431"></circle>
+    <g class="circle-chart__info">
+      <text class="circle-chart__percent" x="16.91549431" y="15.5" alignment-baseline="central" text-anchor="middle" font-size="8">{{bubble.percentage}}</text>
+      <text class="circle-chart__subline" x="16.91549431" y="20.5" alignment-baseline="central" text-anchor="middle" font-size="2">Yay 30% progress!</text>
+    </g>
+    </svg>
+    </div>
+</div>
+

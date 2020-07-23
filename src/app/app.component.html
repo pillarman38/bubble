@@ -1,0 +1,13 @@
+<div class="header">
+  <a routerLink="videoSelection" class="button" routerLinkActive="active">Bubbles</a>
+  <a routerLink="videoSelection" class="button" routerLinkActive="active">Journal</a>
+  <a routerLink="videoSelection" class="button" routerLinkActive="active">Reminders</a>
+  <a routerLink="videoSelection" class="button" routerLinkActive="active">Reflections</a>
+  <a routerLink="login" class="logout" routerLinkActive="active" (click)="logout($event)">logout</a>
+  <a routerLink="videoSelection" class="logout" routerLinkActive="active">Username</a>
+</div>
+<div id="outlet">
+  <router-outlet></router-outlet>
+</div>
+
+
