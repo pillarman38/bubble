@@ -1,29 +1,39 @@
 <div class="loginField">
     <div class="warning" #warning>
-    <input type="text" id="username" #username class="loginFields" placeholder="username">
+    <input type="text" id="" #usernameOrEmail class="loginFields" placeholder="username or email">
     <input type="password" id="password" #password class="loginFields" placeholder="password">
     <button type="submit" (click)="login()" class="loginSignupBtns">login</button>
+        <div id="getAlertMsg" #getAlertMsg>
 
+        </div>
     </div>
     
     <div class="signupSpotContainer">
         <div class="triangles">
-        <svg width="100" height="43.3"><polygon transform="rotate(50 20 80) translate(-36 45.5) skewX(40) scale(1 0.5)" points="0,0 50,0 25.0,43.3" style="fill: #e7863675;  stroke-width: 1;"></polygon></svg>
-        <svg width="100" height="43.3"><polygon transform="rotate(50 20 80) translate(-36 45.5) skewX(40) scale(1 0.5)" points="0,0 50,0 25.0,43.3" style="fill: #e7863675;  stroke-width: 1;"></polygon></svg>
-
-        <svg width="100" height="43.3"><polygon transform="rotate(80 40 20) translate(36 25.5) skewX(40) scale(1 0.5)" points="0,0 50,0 25.0,43.3" style="fill: #e7863675;  stroke-width: 1;"></polygon></svg>
-        <svg width="100" height="43.3"><polygon transform="rotate(40 60 80) translate(-6 45.5) skewX(40) scale(1 0.5)" points="0,0 50,0 25.0,43.3" style="fill: #e7863675;  stroke-width: 1;"></polygon></svg>
-        <svg width="100" height="43.3"><polygon transform="rotate(50 20 80) translate(-36 45.5) skewX(40) scale(1 0.5)" points="0,0 50,0 25.0,43.3" style="fill: #e7863675;  stroke-width: 1;"></polygon></svg>
-
-        <svg width="100" height="100.3"><polygon transform="rotate(50 20 80) translate(-36 45.5) skewX(10) scale(1 0.5)" points="0,0 50,0 25.0,43.3" style="fill: #e7863675;  stroke-width: 1;"></polygon></svg>
-
+      
+                <div class="bubbles"></div>
+                <div class="bubbles"></div>
+                <div class="bubbles"></div>
+                <div class="bubbles"></div>
+                <div class="bubbles"></div>
+                <div class="bubbles"></div>
+                <div class="bubbles"></div>
+                <div class="bubbles"></div>
+                <div class="bubbles"></div>
+                <div class="bubbles"></div>
+                <div class="bubbles"></div>
+                <div class="bubbles"></div>
         </div>
         
         <div class="signupSpot">
-            <input type="text" id="username" #username class="loginFields" placeholder="username">
-            <input type="password" id="password" #password class="loginFields" placeholder="password">
-            <input type="password" id="passwordCheck" #passwordCheck class="loginFields" placeholder="password again">
+            <input type="text" id="usernameSignUp" #usernameSignUp class="loginFields" placeholder="username">
+            <input type="text" id="emailSignUp" #emailSignUp class="loginFields" placeholder="email">
+            <input type="password" id="passwordSignUp" #passwordSignUp class="loginFields" placeholder="password">
+            <input type="password" id="passwordCheckSignUp" #passwordCheckSignUp class="loginFields" placeholder="password again">
             <button type="button" (click)="signUp()" class="loginSignupBtns">Signup</button>
+            <div id="getAlertMsgSignUp" #getAlertMsgSignUp>
+
+            </div>
         </div>
     </div>
 </div>

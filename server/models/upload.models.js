@@ -21,12 +21,12 @@ let routeFunctions = {
         })
     },
     login: (loginInfo, callback) => {
-        console.log(loginInfo)
-
-        pool.query(`SELECT * FROM users WHERE email = '${loginInfo['email']}'`, (err, resp)=>{
-            console.log(resp)
-            bcrypt.compare(loginInfo['password'], resp['password'], function(err, resp) {
-                    return callback(err, resp)
+        pool.query(`SELECT * FROM users WHERE email = '${loginInfo['email']}' OR username = '${loginInfo['email']}'`, (err, resp)=>{
+            // var resObj = JSON.stringify(resp[0])
+            console.log(loginInfo, resp)
+            bcrypt.compare(loginInfo['password'], resp[0]['password'], function(err, res) {
+                console.log(err, res)
+                    return callback(err, {res: res, user: resp[0]['username']})
             }) 
         })
     },

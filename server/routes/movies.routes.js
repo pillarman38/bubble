@@ -5,8 +5,19 @@ let models = require('../models/upload.models.js')
 let fs = require("fs")
 
 router.post('/login', (req, res)=>{
-    console.log("body", req.body)
+    // console.log("body", req.body)
     models.login(req.body, (err, results)=>{
+        if(err){
+            res.send(err)
+        } else {
+            res.send(results)
+        }
+    })
+})
+
+router.post('/signup', (req, res)=>{
+    // console.log("body", req.body)
+    models.signUp(req.body, (err, results)=>{
         if(err){
             res.send(err)
         } else {

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
+import { LoginInfoService } from './login-info-service.service';
+import {Observable} from 'rxjs'; 
 
 @Component({
   selector: 'app-root',
@@ -8,13 +10,20 @@ import { Router } from '@angular/router'
 })
 export class AppComponent implements OnInit{
   cruds = []
-  
-  constructor(private router: Router) { }
+  user;
+  message: string;
+  constructor(private router: Router, private loginServ: LoginInfoService) { }
+
   nums = [1,2,3]
   logout(e) {
     this.router.navigateByUrl('/login')
   }
   ngOnInit() {
+    this.loginServ.currentMsg.subscribe(message =>{
+      this.message = message
+      console.log(this.message, message)
+    })
+
     this.cruds = [1,2,3];
     this.router.navigateByUrl('/login')
   }
