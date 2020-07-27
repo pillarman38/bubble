@@ -1,16 +1,23 @@
 <div class="loginField">
     <div class="warning" #warning>
-    <input type="text" id="" #usernameOrEmail class="loginFields" placeholder="username or email">
-    <input type="password" id="password" #password class="loginFields" placeholder="password">
-    <button type="submit" (click)="login()" class="loginSignupBtns">login</button>
-        <div id="getAlertMsg" #getAlertMsg>
-
+    <input type="text" id="" #usernameOrEmail class="loginFields" placeholder="username or email" (keydown.enter)="handleKeyboardEvent($event)">
+    <input type="password" id="password" #password class="loginFields" placeholder="password" (keydown.enter)="handleKeyboardEvent($event)">
+    <button type="submit" (click)="login()"  class="loginSignupBtns">login</button>
+        <div id="getAlertMsg" #getAlertMsg *ngIf="!getAlertMsgBool">
+            <div class="alert">Incorrect login information</div>
         </div>
+        <div>
+            <button type="submit" (click)="login()"  class="loginSignupBtns">login<a href="#" class="fa fa-facebook"></a></button>
+        </div>
+        <div>
+            <button type="submit" (click)="login()"  class="loginSignupBtns">login<a href="#" class="fa fa-twitter"></a></button>
+        </div>
+        <a routerLink="signup">Sign Up Here</a>
     </div>
-    
+
     <div class="signupSpotContainer">
         <div class="triangles">
-      
+    
                 <div class="bubbles"></div>
                 <div class="bubbles"></div>
                 <div class="bubbles"></div>
@@ -24,17 +31,19 @@
                 <div class="bubbles"></div>
                 <div class="bubbles"></div>
         </div>
-        
-        <div class="signupSpot">
+        <!-- <p style="color: white">hi</p> -->
+        <!-- <div class="signupSpot">
             <input type="text" id="usernameSignUp" #usernameSignUp class="loginFields" placeholder="username">
             <input type="text" id="emailSignUp" #emailSignUp class="loginFields" placeholder="email">
             <input type="password" id="passwordSignUp" #passwordSignUp class="loginFields" placeholder="password">
             <input type="password" id="passwordCheckSignUp" #passwordCheckSignUp class="loginFields" placeholder="password again">
-            <button type="button" (click)="signUp()" class="loginSignupBtns">Signup</button>
+            <button type="button" (click)="signUp()" class="loginSignupBtns" >Signup</button>
             <div id="getAlertMsgSignUp" #getAlertMsgSignUp>
-
+                <div id="getAlertMsg" #getAlertMsg *ngIf="!signUpAlertMsg">
+                    <div class="alert">Incorrect login information</div>
+                </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 

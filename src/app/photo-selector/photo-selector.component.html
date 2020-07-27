@@ -1,1 +1,14 @@
-<p>photo-selector works!</p>
+<div class="dropzone">
+    <input type="file" #fileDropRef id="fileDropRef" multiple (change)="handleDrop($event)" multiple>
+    <img src="../../assets/images/upload.png" alt="" width="64" height="64">
+    <p>Drag and drop files here.</p>
+    <p>or</p>
+    <p>Browse for file.</p>
+   
+</div> 
+<div id="progressBar" #progressBar></div>
+<div id="photoAlbum" #photoAlbum>
+
+</div>
+<div id="gallery" #gallery></div>
+<a routerLink="/questionnaire">Upload photos</a>

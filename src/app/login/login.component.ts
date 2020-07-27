@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, HostListener } from '@angular/core';
 import { Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http';
 import { LoginInfoService } from '../login-info-service.service';
@@ -21,9 +21,13 @@ export class LoginComponent implements OnInit {
   @ViewChild('passwordSignUp') passwordSignUp: ElementRef;
   @ViewChild('passwordCheckSignUp') passwordCheckSignUp: ElementRef;
   @ViewChild('getAlertMsgSignUp') getAlertMsgSignUp: ElementRef;
-
+  public obs$: Observable<boolean>
   message: string;
   invalidInfo = false;
+
+  @Input() getAlertMsgBool = true
+  @Input() signUpAlertMsg = true
+
 
   constructor(private http: HttpClient, private router:Router, private loginServ: LoginInfoService) { }
 
@@ -44,16 +48,18 @@ export class LoginComponent implements OnInit {
         this.loginServ.loggedIn = true
         this.loginServ.changeMsg(res['user'])
         this.message = "hi"
+        this.getAlertMsgBool = false
       }
       if(res['res'] == false) {
-        this.getAlertMsg.nativeElement.innerHTML = `<div class="alert">Incorrect login information</div>`
+        this.getAlertMsgBool = false
       }
     })
   }
 
   signUp(){
     if(this.passwordSignUp.nativeElement.value != this.passwordCheckSignUp.nativeElement.value) {
-      this.getAlertMsgSignUp.nativeElement.innerHTML = `<div class="alertSignUp">Passwords do not match</div>`
+      this.signUpAlertMsg = false
+      this.router.navigateByUrl('photoSelector')
     } else {
       this.loginServ.signupObj = {
         username: this.usernameSignUp,
@@ -63,10 +69,13 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/photoSelector')
     }
   }
-
+  handleKeyboardEvent($event) { 
+    this.login()
+  }
   ngOnInit(): void {
-    // this.loginServ.currentMsg.subscribe(message =>{
-    //   this.message = message
-    // })
+    // this.source$ = false;
+    this.loginServ.currentMsg.subscribe(message =>{
+      this.message = message
+    })
   }
 }

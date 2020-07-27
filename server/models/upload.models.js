@@ -23,11 +23,15 @@ let routeFunctions = {
     login: (loginInfo, callback) => {
         pool.query(`SELECT * FROM users WHERE email = '${loginInfo['email']}' OR username = '${loginInfo['email']}'`, (err, resp)=>{
             // var resObj = JSON.stringify(resp[0])
-            console.log(loginInfo, resp)
-            bcrypt.compare(loginInfo['password'], resp[0]['password'], function(err, res) {
-                console.log(err, res)
+            console.log(loginInfo, resp, err)
+            if(resp[0] === undefined) {
+                return callback(err, {res: resp, user: false})
+            } else {
+                bcrypt.compare(loginInfo['password'], resp[0]['password'], function(err, res) {
+                    console.log(err, res)
                     return callback(err, {res: res, user: resp[0]['username']})
-            }) 
+                })  
+            }
         })
     },
     uploadPhotos: (photos, callback) => {
