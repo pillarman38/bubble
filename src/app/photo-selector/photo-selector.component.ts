@@ -71,8 +71,6 @@ export class PhotoSelectorComponent implements OnInit {
     // JavaScript file-like object
     var content = '<a id="a"><b id="b">hey!</b></a>'; // the body of the new file...
     var blob = new Blob([content], { type: "text/xml"});
-  
-    
     
     var request = new XMLHttpRequest();
     request.onreadystatechange = function() {

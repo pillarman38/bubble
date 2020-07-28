@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { PhotoSelectorComponent } from './photo-selector/photo-selector.component';
+import { ReactiveFormsModule } from '@angular/forms'
 
 var appRoutes: Routes  = [
   {path: "login", component: LoginComponent},
@@ -25,6 +26,7 @@ var appRoutes: Routes  = [
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],

@@ -6,19 +6,24 @@ var bcrypt = require('bcrypt')
 
 let routeFunctions = {
     signUp: (userInfo, callback) => {
+        console.log(userInfo)
         pool.query(`SELECT * FROM users WHERE email = '${userInfo['email']}'`, (err, res)=>{
             console.log(res, err)
             if(res[0] == null) {
                 pool.query('INSERT INTO `users` SET ?', userInfo, (err, resultstwo) =>{
-                    // console.log(err, resultstwo)
-                    return callback("user added")
+                    console.log(err, resultstwo)
+                    var resp = JSON.stringify(resultstwo)
+                    return callback({res: true})
             })
             } if(res[0] != null) {
                 if(res[0]['email'] == userInfo['email']) {
-                    return callback("email in use")
+                    return callback({res: false})
                 }
             }
         })
+    },
+    profilePic: (pic, callback) => {
+
     },
     login: (loginInfo, callback) => {
         pool.query(`SELECT * FROM users WHERE email = '${loginInfo['email']}' OR username = '${loginInfo['email']}'`, (err, resp)=>{

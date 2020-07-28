@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, HostListener } from '@angular/core';
 import { Router } from '@angular/router'
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginInfoService } from '../login-info-service.service';
 import { Observable } from 'rxjs';
+import { ReactiveFormsModule, FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
@@ -21,19 +23,58 @@ export class LoginComponent implements OnInit {
   @ViewChild('passwordSignUp') passwordSignUp: ElementRef;
   @ViewChild('passwordCheckSignUp') passwordCheckSignUp: ElementRef;
   @ViewChild('getAlertMsgSignUp') getAlertMsgSignUp: ElementRef;
+
   public obs$: Observable<boolean>
   message: string;
   invalidInfo = false;
 
   @Input() getAlertMsgBool = true
   @Input() signUpAlertMsg = true
+  @Input() loginOrSignUp = true
+  @Input() signUpAlertMsgPass = true
+  @Input() emailInUse = false
 
+  signupForm: FormGroup;
+  loginForm: FormGroup;
+  constructor(private http: HttpClient, private router:Router, private loginServ: LoginInfoService, private fb: FormBuilder) { 
+    this.signupForm = fb.group({
+      username: ["", [Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(30)]],
+      email:["", Validators.required],
+      password: ["", Validators.required],
+      passwordTwo: ["", Validators.required]
+  });
+  this.loginForm = fb.group({
+    username: ["", Validators.required],
+    email:["", Validators.required],
+    password: ["", Validators.required, Validators.minLength(10)]
+});
 
-  constructor(private http: HttpClient, private router:Router, private loginServ: LoginInfoService) { }
+  }
+  loginOrSignUpSwitch() {
+    if(this.loginOrSignUp == true) {
+      this.loginOrSignUp = false
+    } else {
+      this.loginOrSignUp = true
+    }
+  }
+  onLoginFormSubmit() {
 
-  login() {
-    console.log( this.usernameOrEmail.nativeElement.value)
     let formData = new FormData();
+
+    formData.append('username', this.signupForm.get('username').value);
+    formData.append('password', this.signupForm.get('password').value);
+    formData.append('email', this.signupForm.get('email').value);
+
+    console.log(formData)
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'multipart/form-data'
+    })
+    let options = { headers: headers };
+
+    console.log( this.usernameOrEmail.nativeElement.value)
 
     var loginForm = {
       email: this.usernameOrEmail.nativeElement.value,
@@ -51,29 +92,35 @@ export class LoginComponent implements OnInit {
         this.getAlertMsgBool = false
       }
       if(res['res'] == false) {
-        this.getAlertMsgBool = false
+        this.getAlertMsgBool = true
       }
     })
   }
 
-  signUp(){
-    if(this.passwordSignUp.nativeElement.value != this.passwordCheckSignUp.nativeElement.value) {
-      this.signUpAlertMsg = false
-      this.router.navigateByUrl('photoSelector')
-    } else {
-      this.loginServ.signupObj = {
-        username: this.usernameSignUp,
-        email: this.emailSignUp,
-        password: this.passwordSignUp
-      }
-      this.router.navigateByUrl('/photoSelector')
-    }
-  }
   handleKeyboardEvent($event) { 
-    this.login()
+    this.onLoginFormSubmit()
   }
+
+  onFormSubmit() {
+    let formData = new FormData();
+
+    formData.append('username', this.signupForm.get('username').value);
+    formData.append('password', this.signupForm.get('password').value);
+    formData.append('email', this.signupForm.get('email').value);
+
+    console.log(formData)
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'multipart/form-data'
+    })
+    let options = { headers: headers };
+
+    this.http.post('http://192.168.1.86:3001/api/management/signup', formData).subscribe(res => {
+      console.log(res)
+    })
+  }
+
   ngOnInit(): void {
-    // this.source$ = false;
     this.loginServ.currentMsg.subscribe(message =>{
       this.message = message
     })

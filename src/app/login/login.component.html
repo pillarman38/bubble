@@ -1,23 +1,46 @@
 <div class="loginField">
-    <div class="warning" #warning>
-    <input type="text" id="" #usernameOrEmail class="loginFields" placeholder="username or email" (keydown.enter)="handleKeyboardEvent($event)">
-    <input type="password" id="password" #password class="loginFields" placeholder="password" (keydown.enter)="handleKeyboardEvent($event)">
-    <button type="submit" (click)="login()"  class="loginSignupBtns">login</button>
-        <div id="getAlertMsg" #getAlertMsg *ngIf="!getAlertMsgBool">
-            <div class="alert">Incorrect login information</div>
-        </div>
-        <div>
-            <button type="submit" (click)="login()"  class="loginSignupBtns">login<a href="#" class="fa fa-facebook"></a></button>
-        </div>
-        <div>
-            <button type="submit" (click)="login()"  class="loginSignupBtns">login<a href="#" class="fa fa-twitter"></a></button>
-        </div>
-        <a routerLink="signup">Sign Up Here</a>
-    </div>
-
-    <div class="signupSpotContainer">
-        <div class="triangles">
     
+    <div class="warning" #warning *ngIf="loginOrSignUp">
+        <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit()">
+        <input type="text" id="" #usernameOrEmail class="loginFields" placeholder="username or email" formControlName="username" (keydown.enter)="handleKeyboardEvent($event)">
+        <input type="password" id="password" #password class="loginFields" placeholder="password" formControlName="password" (keydown.enter)="handleKeyboardEvent($event)">
+        <button type="submit" class="loginSignupBtns">login</button>
+            <div id="getAlertMsg" #getAlertMsg *ngIf="!getAlertMsgBool">
+                <div class="alert">Incorrect login information</div>
+            </div>
+            <div>
+                <button type="submit" class="loginSignupBtns">login<a href="#" class="fa fa-facebook"></a></button>
+            </div>
+            <div>
+                <button type="submit" class="loginSignupBtns">login<a href="#" class="fa fa-twitter"></a></button>
+            </div>
+                <button type="submit" (click)="loginOrSignUpSwitch()" class="loginSignupBtns">Sign Up</button>
+        </form>
+</div>
+
+    <form [formGroup]="signupForm" (ngSubmit)="onFormSubmit()">
+    <div class="warning" *ngIf="!loginOrSignUp">
+        <input type="text" id="usernameSignUp" #usernameSignUp class="loginFields" placeholder="username" formControlName="username">
+        <div *ngIf="signupForm.get('username').invalid && (signupForm.get('username').dirty || signupForm.get('username').touched)"
+    class="alert alert-danger">Hi</div>
+        <input type="text" id="emailSignUp" #emailSignUp class="loginFields" placeholder="email" formControlName="email">
+        <input type="password" id="passwordSignUp" #passwordSignUp class="loginFields" placeholder="password" formControlName="password">
+        <input type="password" id="passwordCheckSignUp" #passwordCheckSignUp class="loginFields" placeholder="password again" formControlName="passwordTwo">
+        <button type="submit" class="loginSignupBtns">Signup</button>
+        <div>
+            <button type="button" (click)="loginOrSignUpSwitch()" class="loginSignupBtns">Login</button>
+        </div>
+        
+        <div id="getAlertMsgSignUp" #getAlertMsgSignUp>
+            <div id="getAlertMsg" #getAlertMsg *ngIf="!signUpAlertMsg">
+                <div class="alert">Incorrect login information</div>
+            </div>
+        </div>
+    </div>
+</form>
+    
+<div class="signupSpotContainer">
+        <div class="triangles">
                 <div class="bubbles"></div>
                 <div class="bubbles"></div>
                 <div class="bubbles"></div>
@@ -31,19 +54,7 @@
                 <div class="bubbles"></div>
                 <div class="bubbles"></div>
         </div>
-        <!-- <p style="color: white">hi</p> -->
-        <!-- <div class="signupSpot">
-            <input type="text" id="usernameSignUp" #usernameSignUp class="loginFields" placeholder="username">
-            <input type="text" id="emailSignUp" #emailSignUp class="loginFields" placeholder="email">
-            <input type="password" id="passwordSignUp" #passwordSignUp class="loginFields" placeholder="password">
-            <input type="password" id="passwordCheckSignUp" #passwordCheckSignUp class="loginFields" placeholder="password again">
-            <button type="button" (click)="signUp()" class="loginSignupBtns" >Signup</button>
-            <div id="getAlertMsgSignUp" #getAlertMsgSignUp>
-                <div id="getAlertMsg" #getAlertMsg *ngIf="!signUpAlertMsg">
-                    <div class="alert">Incorrect login information</div>
-                </div>
-            </div>
-        </div> -->
+        <p style="color: white">hi</p>
     </div>
 </div>
 
