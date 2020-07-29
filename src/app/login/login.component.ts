@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginInfoService } from '../login-info-service.service';
 import { Observable } from 'rxjs';
 import { ReactiveFormsModule, FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { passValidator } from './passvalidator';
 
 
 @Component({
@@ -41,16 +42,19 @@ export class LoginComponent implements OnInit {
       username: ["", [Validators.required,
       Validators.minLength(2),
       Validators.maxLength(30)]],
-      email:["", Validators.required],
+      email:["", Validators.email],
       password: ["", Validators.required],
-      passwordTwo: ["", Validators.required]
+      passwordTwo: ["", passValidator]
   });
+
   this.loginForm = fb.group({
     username: ["", Validators.required],
     email:["", Validators.required],
-    password: ["", Validators.required, Validators.minLength(10)]
-});
-
+    password: ["", Validators.required, Validators.minLength(8)]
+  });
+console.log(this.signupForm.controls)
+  this.signupForm.controls.password.valueChanges.subscribe(x =>  this.signupForm.controls.passwordTwo.updateValueAndValidity())
+  
   }
   loginOrSignUpSwitch() {
     if(this.loginOrSignUp == true) {

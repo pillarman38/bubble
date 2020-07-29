@@ -18,14 +18,23 @@
         </form>
 </div>
 
-    <form [formGroup]="signupForm" (ngSubmit)="onFormSubmit()">
+    <form [formGroup]="signupForm" (ngSubmit)="signupForm.valid && onFormSubmit()">
     <div class="warning" *ngIf="!loginOrSignUp">
         <input type="text" id="usernameSignUp" #usernameSignUp class="loginFields" placeholder="username" formControlName="username">
-        <div *ngIf="signupForm.get('username').invalid && (signupForm.get('username').dirty || signupForm.get('username').touched)"
-    class="alert alert-danger">Hi</div>
+        <div *ngIf="signupForm.get('username').invalid && (signupForm.get('username').dirty || signupForm.get('username').touched)" class="alert alert-danger">Hi</div>
+
         <input type="text" id="emailSignUp" #emailSignUp class="loginFields" placeholder="email" formControlName="email">
-        <input type="password" id="passwordSignUp" #passwordSignUp class="loginFields" placeholder="password" formControlName="password">
-        <input type="password" id="passwordCheckSignUp" #passwordCheckSignUp class="loginFields" placeholder="password again" formControlName="passwordTwo">
+        <div *ngIf="signupForm.get('email').invalid && (signupForm.get('email').dirty || signupForm.get('email').touched)" class="alert alert-danger">Hi</div>
+        
+        <div *ngIf="signupForm.controls.passwordTwo.valid && !signupForm.controls.passwordTwo.touched">
+            <input type="password" id="passwordSignUp" #passwordSignUp class="loginFields" placeholder="password" formControlName="password">
+            <input type="password" id="passwordCheckSignUp" #passwordCheckSignUp class="loginFields" placeholder="password again" formControlName="passwordTwo">
+        </div>
+        <div *ngIf="!signupForm.controls.passwordTwo.valid && !signupForm.controls.passwordTwo.touched">
+            <input type="password" id="passwordSignUp" #passwordSignUp class="loginFields" placeholder="password" style="border: 2px solid red" formControlName="password">
+            <input type="password" id="passwordCheckSignUp" #passwordCheckSignUp class="loginFields" placeholder="password again" style="border: 2px solid red" formControlName="passwordTwo">
+        </div>
+        
         <button type="submit" class="loginSignupBtns">Signup</button>
         <div>
             <button type="button" (click)="loginOrSignUpSwitch()" class="loginSignupBtns">Login</button>
