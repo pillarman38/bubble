@@ -26,15 +26,22 @@
         <input type="text" id="emailSignUp" #emailSignUp class="loginFields" placeholder="email" formControlName="email">
         <div *ngIf="signupForm.get('email').invalid && (signupForm.get('email').dirty || signupForm.get('email').touched)" class="alert alert-danger">Hi</div>
         
+        <div *ngIf="signupForm.controls.passwordTwo.valid">
+            <input type="password" id="passwordSignUp" #passwordSignUp class="loginFields" placeholder="password" formControlName="password">
+            <input type="password" id="passwordCheckSignUp" #passwordCheckSignUp class="loginFields" placeholder="password again" formControlName="passwordTwo">
+        </div>
+        <div *ngIf="!signupForm.controls.passwordTwo.valid && signupForm.controls.passwordTwo.touched">
+            <input type="password" id="passwordSignUp" #passwordSignUp class="loginFields" placeholder="password" style="border: 2px solid red" formControlName="password">
+            <input type="password" id="passwordCheckSignUp" #passwordCheckSignUp class="loginFields" placeholder="password again" style="border: 2px solid red" formControlName="passwordTwo">
+        </div>
+        <div *ngIf="!signupForm.controls.passwordTwo.valid && !signupForm.controls.passwordTwo.touched">
+            <input type="password" id="passwordSignUp" #passwordSignUp class="loginFields" placeholder="password" formControlName="password">
+            <input type="password" id="passwordCheckSignUp" #passwordCheckSignUp class="loginFields" placeholder="password again" formControlName="passwordTwo">
+        </div>
         <div *ngIf="signupForm.controls.passwordTwo.valid && !signupForm.controls.passwordTwo.touched">
             <input type="password" id="passwordSignUp" #passwordSignUp class="loginFields" placeholder="password" formControlName="password">
             <input type="password" id="passwordCheckSignUp" #passwordCheckSignUp class="loginFields" placeholder="password again" formControlName="passwordTwo">
         </div>
-        <div *ngIf="!signupForm.controls.passwordTwo.valid && !signupForm.controls.passwordTwo.touched">
-            <input type="password" id="passwordSignUp" #passwordSignUp class="loginFields" placeholder="password" style="border: 2px solid red" formControlName="password">
-            <input type="password" id="passwordCheckSignUp" #passwordCheckSignUp class="loginFields" placeholder="password again" style="border: 2px solid red" formControlName="passwordTwo">
-        </div>
-        
         <button type="submit" class="loginSignupBtns">Signup</button>
         <div>
             <button type="button" (click)="loginOrSignUpSwitch()" class="loginSignupBtns">Login</button>

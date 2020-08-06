@@ -63,8 +63,21 @@ console.log(this.signupForm.controls)
       this.loginOrSignUp = true
     }
   }
-  onLoginFormSubmit() {
 
+  navigation(url, res) {
+    if(res['res'] == true) {
+      this.router.navigateByUrl(url)
+      this.loginServ.loggedIn = true
+      this.loginServ.changeMsg(res['user'])
+      this.message = "hi"
+      this.getAlertMsgBool = false
+    }
+    if(res['res'] == false) {
+      this.getAlertMsgBool = true
+    }
+  }
+
+  onLoginFormSubmit() {
     let formData = new FormData();
 
     formData.append('username', this.signupForm.get('username').value);
@@ -87,17 +100,7 @@ console.log(this.signupForm.controls)
 
     this.http.post('http://192.168.1.86:3001/api/management/login', loginForm).subscribe(res => {
       console.log(res)
-      
-      if(res['res'] == true) {
-        this.router.navigateByUrl('/homePage')
-        this.loginServ.loggedIn = true
-        this.loginServ.changeMsg(res['user'])
-        this.message = "hi"
-        this.getAlertMsgBool = false
-      }
-      if(res['res'] == false) {
-        this.getAlertMsgBool = true
-      }
+      this.navigation('/homepage', res)
     })
   }
 
@@ -121,6 +124,7 @@ console.log(this.signupForm.controls)
 
     this.http.post('http://192.168.1.86:3001/api/management/signup', formData).subscribe(res => {
       console.log(res)
+      this.navigation('/photoSelector', res)
     })
   }
 
