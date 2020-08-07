@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs'
 
 @Component({
   selector: 'app-photo-selector',
@@ -11,54 +12,79 @@ export class PhotoSelectorComponent implements OnInit {
 
   @ViewChild('dropArea') dropArea: ElementRef;
   @ViewChild('progressBar') progressBar: ElementRef;
-  @ViewChild('gallery') gallery: ElementRef;
+  
+  photo = "";
 
-  uploadProgress = []
-
+  gallery = false;
+  gallerySub = new BehaviorSubject<boolean>(false)
+  currentMsg = this.gallerySub.asObservable()
   constructor(private http: HttpClient) { }
 
   handleDrop(e) {
     e.preventDefault()
     e.stopPropagation()
     console.log(e)
-
+    
     this.handleFiles(e.target.files)
+    this.gallery = true
+    console.log(this)
   }
   
-  initializeProgress(numFiles) {
-    this.progressBar.nativeElement.value = 0
-    this.uploadProgress = []
+  // initializeProgress(numFiles) {
+  //   this.progressBar.nativeElement.value = 0
+    
   
-    for(let i = numFiles; i > 0; i--) {
-      this.uploadProgress.push(0)
-    }
-  }
+  //   // for(let i = numFiles; i > 0; i--) {
+  //     this.uploadProgress = 
+  //   // }
+  // }
   
   updateProgress(fileNumber, percent) {
-    this.uploadProgress[fileNumber] = percent
-    let total = this.uploadProgress.reduce((tot, curr) => tot + curr, 0) / this.uploadProgress.length
-    console.debug('update', fileNumber, percent, total)
-    this.progressBar.nativeElement.value = total
+    // this.uploadProgress[fileNumber] = percent
+    // let total = this.uploadProgress.reduce((tot, curr) => tot + curr, 0) / this.uploadProgress.length
+    console.debug('update', fileNumber, percent)
+    // this.progressBar.nativeElement.value = total
   }
   
   handleFiles(files) {
-    console.log(files)
+    console.log(this)
+    
+    console.log(files[0])
     files = [...files]
-    this.initializeProgress(files.length)
-    files.forEach(this.uploadFile)
-    files.forEach(this.previewFile)
+    // this.initializeProgress(files.length)
+    // files.forEach(this.uploadFile)
+    this.previewFile(files[0])
+    
   }
-  
-  previewFile(file) {
-    let reader = new FileReader()
-    let gallery = document.getElementById('gallery')
-    reader.readAsDataURL(file)
-    reader.onloadend = function() {
+  // galleryChanger() {
 
-      let imgStr = reader.result as string
-      
-      gallery.innerHTML += `<img src=${imgStr} width='100' height='100'>`
+  // }
+  previewFile(file) {
+    // this.photo = "https://i.insider.com/5cdf092a93a1522b75087d88?width=1100&format=jpeg&auto=webp"
+    function doStuff(file, callback) {
+      let reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onloadend = function() {
+        console.log(file)
+        let imgStr = reader.result as string
+        callback(imgStr)
+      }
     }
+    
+    var why = doStuff(file, (err, res) =>{
+      console.log(file, err,res)
+        if(err) {
+          this.photo = err
+        }
+        if(res) {
+          
+          // this.currentMsg.subscribe((resp) => {
+            this.photo = res
+          // })
+         
+        }
+    })
+    return why
   }
   
   uploadFile(file, i) {
@@ -80,7 +106,6 @@ export class PhotoSelectorComponent implements OnInit {
   }
     request.open("POST", 'http://192.168.1.86:3001/api/management/uploadPhoto');
     request.send(formData);
-
   }
   ngOnInit(): void {
   }

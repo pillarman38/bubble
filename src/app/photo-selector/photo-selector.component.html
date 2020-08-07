@@ -1,5 +1,5 @@
 <div class="dropzone">
-    <input type="file" #fileDropRef id="fileDropRef" multiple (change)="handleDrop($event)" multiple>
+    <input type="file" #fileDropRef id="fileDropRef" (change)="handleDrop($event)">
     <img src="../../assets/images/upload.png" alt="" width="64" height="64">
     <p>Drag and drop files here.</p>
     <p>or</p>
@@ -10,5 +10,10 @@
 <div id="photoAlbum" #photoAlbum>
 
 </div>
-<div id="gallery" #gallery></div>
+<div id="gallery" #gallery *ngIf="!gallery">
+    <img id="selectedPhoto" #selectedPhoto src="{{photo}}">
+</div>
+<div id="gallery" #gallery *ngIf="gallery">
+    <img id="selectedPhoto" #selectedPhoto src="{{photo}}">
+</div>
 <a routerLink="/questionnaire">Upload photos</a>
