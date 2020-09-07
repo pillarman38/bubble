@@ -112,21 +112,17 @@ let routeFunctions = {
             }
         })
     },
-   
+    
     getQuestions: (date, callback) => {
         pool.query(`SELECT * FROM questions`, (err, res)=>{
             callback(err, res)
         })
     },
-    
+
     verifyEmail: (token, callback) => {
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, function(err, decoded) {
-            if(err) {
-                callback(err)
-            } else {
-               console.log("DECODE", decoded) 
-               callback(decoded)
-            }
+            console.log("WHAA", err, decoded);
+            callback(err, decoded)
         });
     }
 }

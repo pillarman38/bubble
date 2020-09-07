@@ -58,12 +58,16 @@ router.post('/questionGetter', upload.none(), (req, res) => {
         }
     })
 })
+
 router.post('/verify', upload.none(), (req, res) => {
-    console.log("BODY", req.body)
+    // console.log("BODY", req.body)
     models.verifyEmail(req.body['key'], (err, results) => {
+        console.log("BODY", err, results);
         if(err){
-            res.send(err)
-        } else {
+            res.send({err: err})
+        } 
+        if({results: results}) {
+            console.log("RESULTS", results);
             res.send(results)
         }
     })
