@@ -10,6 +10,7 @@ export class LoginInfoService {
   private messageSrc = new BehaviorSubject<string>("")
   currentMsg = this.messageSrc.asObservable()
   signupObj = {}
+  loginObj = {}
   constructor() { }
 
   changeMsg(message: string) {

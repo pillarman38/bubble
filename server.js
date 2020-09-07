@@ -1,4 +1,5 @@
 require('./config/config')
+require('./config/mailer')
 const express = require('express')
 const app = express()
 const appTwo = express()
@@ -16,9 +17,8 @@ app.use(cors())
 
 let userRoutes = require('./server/routes/movies.routes')
 
+// app.use("/", mailerRoutes)
 app.use('/api/management', userRoutes)
-
-
 
 app.get('*', (req, res) => {
     res.sendFile('/dist/index.html', {root: __dirname})

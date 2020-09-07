@@ -6,14 +6,19 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
-import { PhotoSelectorComponent } from './photo-selector/photo-selector.component';
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
+import { EmailVerifyComponent } from './email-verify/email-verify.component';
+import { SuccesfulVerificationComponent } from './succesful-verification/succesful-verification.component'
+import { combineLatest } from 'rxjs';
+import { WeeklyQuestionComponent } from './weekly-question/weekly-question.component';
 
 var appRoutes: Routes  = [
   {path: "login", component: LoginComponent},
-  {path: "homePage", component: HomePageComponent},
-  {path: "photoSelector", component: PhotoSelectorComponent},
-  {path: "login", component: LoginComponent}
+  {path: "homepage", component: HomePageComponent},
+  {path: "emailverify/:key", component: EmailVerifyComponent},
+  {path: "weeklyQuestion", component: WeeklyQuestionComponent},
+  {path: "login", component: LoginComponent},
+  {path: "successfulverification", component: SuccesfulVerificationComponent}
 ]
 
 @NgModule({
@@ -21,7 +26,10 @@ var appRoutes: Routes  = [
     AppComponent,
     LoginComponent,
     HomePageComponent,
-    PhotoSelectorComponent
+    EmailVerifyComponent,
+    EmailVerifyComponent,
+    SuccesfulVerificationComponent,
+    WeeklyQuestionComponent
   ],
   imports: [
     BrowserModule,

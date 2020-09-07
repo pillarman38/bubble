@@ -25,6 +25,6 @@ export class AppComponent implements OnInit{
     })
 
     this.cruds = [1,2,3];
-    this.router.navigateByUrl('/login')
+    // this.router.navigateByUrl('/login')
   }
 }

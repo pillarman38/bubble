@@ -67,7 +67,6 @@ console.log(this.signupForm.controls)
   navigation(url, res) {
     if(res['res'] == true) {
       this.router.navigateByUrl(url)
-      this.loginServ.loggedIn = true
       this.loginServ.changeMsg(res['user'])
       this.message = "hi"
       this.getAlertMsgBool = false
@@ -98,7 +97,7 @@ console.log(this.signupForm.controls)
       password: this.password.nativeElement.value
     }
 
-    this.http.post('http://192.168.1.86:3001/api/management/login', loginForm).subscribe(res => {
+    this.http.post('http://localhost:3001/api/management/login', loginForm).subscribe(res => {
       console.log(res)
       this.navigation('/homepage', res)
     })
@@ -122,9 +121,9 @@ console.log(this.signupForm.controls)
     })
     let options = { headers: headers };
 
-    this.http.post('http://192.168.1.86:3001/api/management/signup', formData).subscribe(res => {
+    this.http.post('http://localhost:3001/api/management/signup', formData).subscribe(res => {
       console.log(res)
-      this.navigation('/photoSelector', res)
+      this.navigation('/emailVerify', res)
     })
   }
 
