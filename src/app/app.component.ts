@@ -9,22 +9,32 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  cruds = []
   user;
   message: string;
   constructor(private router: Router, private loginServ: LoginInfoService) { }
 
-  nums = [1,2,3]
   logout(e) {
     this.router.navigateByUrl('/login')
+    localStorage.setItem('user', '')
+    this.message = null
   }
+
   ngOnInit() {
-    this.loginServ.currentMsg.subscribe(message =>{
+    console.log(this.loginServ.loggedIn)
+    
+    if(localStorage.getItem('user') == null || localStorage.getItem('user') == ""){
+      this.message = null
+      this.router.navigateByUrl('/login')
+    } else {
+      this.message = localStorage.getItem('user')
+      this.router.navigateByUrl('/homepage')
+      
+      console.log(this.message);
+      
+    }
+    this.loginServ.currentMsg.subscribe(message => {
       this.message = message
       console.log(this.message, message)
     })
-
-    this.cruds = [1,2,3];
-    // this.router.navigateByUrl('/login')
   }
 }

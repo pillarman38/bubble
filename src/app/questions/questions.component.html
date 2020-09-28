@@ -1,0 +1,6 @@
+<p>{{question}}</p>
+
+<form [formGroup]="questionForm" (ngSubmit)="submitForm()">
+    <input id="name" type="text" formControlName="answer">
+    <button class="button" type="submit">Answer</button>
+</form>

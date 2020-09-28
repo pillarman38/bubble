@@ -7,6 +7,8 @@ var mailer = require('nodemailer')
 const { google } = require('googleapis');
 const { OAuth2 } = google.auth;
 var jwt = require('jsonwebtoken');
+const { sheets } = require('googleapis/build/src/apis/sheets')
+const { get } = require('http')
 
 const OAUTH_PLAYGROUND = 'https://developers.google.com/oauthplayground';
 
@@ -124,6 +126,23 @@ let routeFunctions = {
             console.log("WHAA", err, decoded);
             callback(err, decoded)
         });
+    },
+    getNewChallengeOrQuestion: (challengeObj, callback) => {
+        pool.query(`SELECT * FROM currentquestions WHERE user = '${challengeObj['user']}'`, (err, res) => {
+            console.log(err, res);
+            callback(err, res)
+        })
+    },
+    getArticles: (callback) => {
+        pool.query(`SELECT * FROM articles`, (err, res) => {
+            callback(err, res)
+        })
+    },
+    answerQuestion: (userInfo, callback) => {
+        console.log(userInfo);
+        pool.query(`INSERT INTO questionsasked SET ?`, userInfo, (err, res) => {
+            console.log(err, res);
+        })
     }
 }
 

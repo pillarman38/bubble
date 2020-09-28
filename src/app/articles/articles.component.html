@@ -1,0 +1,5 @@
+<div *ngFor="let article of articleList" (click)="articlePage(article)">
+    <p>{{article.title}}</p>
+    <div class="articlePrev">
+        <div [innerHTML]="article.article"></div>
+</div>

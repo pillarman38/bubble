@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
     email:["", Validators.required],
     password: ["", Validators.required, Validators.minLength(8)]
   });
-console.log(this.signupForm.controls)
+  console.log(this.signupForm.controls)
   this.signupForm.controls.password.valueChanges.subscribe(x =>  this.signupForm.controls.passwordTwo.updateValueAndValidity())
   
   }
@@ -99,6 +99,9 @@ console.log(this.signupForm.controls)
 
     this.http.post('http://localhost:3001/api/management/login', loginForm).subscribe(res => {
       console.log(res)
+      this.loginServ.loginObj = res
+      
+      localStorage.setItem('user', res['user'])
       this.navigation('/homepage', res)
     })
   }
@@ -108,12 +111,13 @@ console.log(this.signupForm.controls)
   }
 
   onFormSubmit() {
+    console.log(Intl.DateTimeFormat().resolvedOptions().timeZone)
     let formData = new FormData();
-
+    var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
     formData.append('username', this.signupForm.get('username').value);
     formData.append('password', this.signupForm.get('password').value);
     formData.append('email', this.signupForm.get('email').value);
-
+    formData.append('timezone', timeZone)
     console.log(formData)
 
     let headers = new HttpHeaders({

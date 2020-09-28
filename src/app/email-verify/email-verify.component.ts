@@ -17,6 +17,7 @@ export class EmailVerifyComponent implements OnInit {
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
+    
     this.subscription = this.route.params.subscribe(params => {
       console.log(params)
       this.http.post('http://localhost:3001/api/management/verify', params).subscribe((res) => {

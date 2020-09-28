@@ -8,17 +8,25 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EmailVerifyComponent } from './email-verify/email-verify.component';
-import { SuccesfulVerificationComponent } from './succesful-verification/succesful-verification.component'
+import { SuccesfulVerificationComponent } from './succesful-verification/succesful-verification.component';
 import { combineLatest } from 'rxjs';
 import { WeeklyQuestionComponent } from './weekly-question/weekly-question.component';
+import { BubblesComponent } from './bubbles/bubbles.component';
+import { QuestionsComponent } from './questions/questions.component';
+import { ArticlesComponent } from './articles/articles.component';
+import { ArticlePageComponent } from './article-page/article-page.component';
 
 var appRoutes: Routes  = [
   {path: "login", component: LoginComponent},
   {path: "homepage", component: HomePageComponent},
-  {path: "emailverify/:key", component: EmailVerifyComponent},
+  {path: "articles", component: ArticlesComponent},
+  {path: "articlepage", component: ArticlePageComponent},
   {path: "weeklyQuestion", component: WeeklyQuestionComponent},
   {path: "login", component: LoginComponent},
-  {path: "successfulverification", component: SuccesfulVerificationComponent}
+  {path: "bubbles", component: BubblesComponent},
+  {path: "questions", component: QuestionsComponent},
+  {path: "successfulverification", component: SuccesfulVerificationComponent},
+  {path: "emailverify/:key", component: EmailVerifyComponent}
 ]
 
 @NgModule({
@@ -29,7 +37,11 @@ var appRoutes: Routes  = [
     EmailVerifyComponent,
     EmailVerifyComponent,
     SuccesfulVerificationComponent,
-    WeeklyQuestionComponent
+    WeeklyQuestionComponent,
+    BubblesComponent,
+    QuestionsComponent,
+    ArticlesComponent,
+    ArticlePageComponent
   ],
   imports: [
     BrowserModule,

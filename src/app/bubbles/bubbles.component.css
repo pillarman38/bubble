@@ -1,0 +1,56 @@
+.circle-chart {
+    width: 200px;
+    height: 200px;
+    flex-basis: 0px;
+    flex-grow: 1;
+    
+  }
+  .circle-chart__circle {
+    animation: circle-chart-fill 2s reverse; /* 1 */ 
+    transform: rotate(-90deg); /* 2, 3 */
+    transform-origin: center; /* 4 */
+    box-shadow: 0 8px 8px 0 rgba(81, 136, 255, 0.2);
+  }
+  
+  .circle-chart__info {
+    animation: circle-chart-appear 2s forwards;
+    opacity: 0;
+    transform: translateY(0.3em);
+  }
+  #line {
+    display: flex;
+    width: 100%;
+    height: 400px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  @keyframes circle-chart-fill {
+    to { stroke-dasharray: 0 100; }
+  }
+  
+  @keyframes circle-chart-appear {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Layout styles only, not needed for functionality */
+  html {
+    font-family: sans-serif;
+    padding-right: 1em;
+    padding-left: 1em;
+  }
+  
+  .grid {
+    display: grid;
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  
+  @media (min-width: 31em) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
