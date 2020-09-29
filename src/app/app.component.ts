@@ -20,6 +20,10 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
+    // this.loginServ.currentMsg.subscribe(message => {
+    //   this.message = message
+    //   console.log(this.message, message)
+    // })
     console.log(this.loginServ.loggedIn)
     
     if(localStorage.getItem('user') == null || localStorage.getItem('user') == ""){
@@ -32,9 +36,6 @@ export class AppComponent implements OnInit{
       console.log(this.message);
       
     }
-    this.loginServ.currentMsg.subscribe(message => {
-      this.message = message
-      console.log(this.message, message)
-    })
+    
   }
 }

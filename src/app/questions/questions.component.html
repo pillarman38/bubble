@@ -4,3 +4,6 @@
     <input id="name" type="text" formControlName="answer">
     <button class="button" type="submit">Answer</button>
 </form>
+<div *ngIf="answered">
+    <p>You Answered: {{answer}}</p>
+</div>

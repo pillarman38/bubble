@@ -79,7 +79,7 @@ router.post('/getchallengeorquestion', upload.none(), (req, res) => {
             res.send({err: err})
         } 
         if({results: results}) {
-            res.send(results)
+            res.send({res: results})
         }
     })
 })

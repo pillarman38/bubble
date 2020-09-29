@@ -128,9 +128,26 @@ let routeFunctions = {
         });
     },
     getNewChallengeOrQuestion: (challengeObj, callback) => {
+        console.log(challengeObj);
         pool.query(`SELECT * FROM currentquestions WHERE user = '${challengeObj['user']}'`, (err, res) => {
-            console.log(err, res);
-            callback(err, res)
+            console.log(res[0]['question']);
+            pool.query(`SELECT * FROM questionsasked WHERE user = '${challengeObj['user']}' AND question = '${res[0]['question']}'`, (error, resp) => {
+                console.log("hi", error, resp, resp.length, res);
+                var ret = ""
+                if(resp.length != 0) {
+                    ret = {
+                        status: "question answered",
+                        question: resp[0]['question'],
+                        answer: resp[0]['answer']
+                    }
+                } 
+                if(resp.length == 0) {
+                    console.log(res);
+                    res[0]['status'] = "not answered yet"
+                    ret = {res: res[0]}
+                }
+                callback(error, ret)
+            })
         })
     },
     getArticles: (callback) => {

@@ -1,5 +1,9 @@
 <div *ngFor="let article of articleList" (click)="articlePage(article)">
     <p>{{article.title}}</p>
     <div class="articlePrev">
+        <div class="overlay">
+            <div class="heart"></div>
+        </div>
         <div [innerHTML]="article.article"></div>
+    </div>
 </div>
