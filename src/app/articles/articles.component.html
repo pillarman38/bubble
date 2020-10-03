@@ -1,8 +1,14 @@
-<div *ngFor="let article of articleList" (click)="articlePage(article)">
+<div *ngFor="let article of articleList">
     <p>{{article.title}}</p>
-    <div class="articlePrev">
+    <div *ngIf="article.liked">
+        <div class="heartLiked" (click)="like($event, article)"></div>
+    </div>
+    <div *ngIf="!article.liked">
+        <div class="heart" (click)="like($event, article)"></div>
+    </div>
+    
+    <div class="articlePrev" (click)="articlePage(article)">
         <div class="overlay">
-            <div class="heart"></div>
         </div>
         <div [innerHTML]="article.article"></div>
     </div>

@@ -8,10 +8,11 @@ import { ArticleService } from '../article.service';
 })
 export class ArticlePageComponent implements OnInit {
   article
+  liked = false
   constructor(private articleServ: ArticleService) { }
 
   ngOnInit(): void {
     this.article = this.articleServ.article
+    this.liked = this.article['liked']
   }
-
 }

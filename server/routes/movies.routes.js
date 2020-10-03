@@ -20,7 +20,6 @@ var storage = multer.diskStorage({
 var upload = multer({storage: storage})
 
 router.post('/login', upload.none(), (req, res)=>{
-    console.log(req.body, req.query);
     models.login(req.body, (err, results)=>{
         if(err){
             res.send(err)
@@ -31,7 +30,6 @@ router.post('/login', upload.none(), (req, res)=>{
 })
 
 router.post('/signup', upload.none(), (req, res)=>{
-    console.log(req.body);
     bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(req.body['password'], salt, function(err, hash) {
             models.signUp({
@@ -62,7 +60,6 @@ router.post('/questionGetter', upload.none(), (req, res) => {
 
 router.post('/verify', upload.none(), (req, res) => {
     models.verifyEmail(req.body['key'], (err, results) => {
-        console.log("BODY", err, results);
         if(err){
             res.send({err: err})
         } 
@@ -83,8 +80,8 @@ router.post('/getchallengeorquestion', upload.none(), (req, res) => {
         }
     })
 })
-router.get('/getarticles', upload.none(), (req, res) => {
-    models.getArticles((err, results) => {
+router.post('/getarticles', upload.none(), (req, res) => {
+    models.getArticles(req.body, (err, results) => {
         if(err){
             res.send({err: err})
         } 
@@ -112,5 +109,42 @@ router.post('/answerquestion', upload.none(), (req, res) => {
         }
     })
 })
+
+router.post('/likedarticles', upload.none(), (req, res) => {
+    models.likedArticles(req.body, (err, results) => {
+        console.log(req.body);
+        if(err){
+            res.send({err: err})
+        } 
+        if({results: results}) {
+            res.send(results)
+        }
+    })
+})
+
+router.post('/getbubble', upload.none(), (req, res) => {
+    models.getBubble(req.body, (err, results) => {
+        console.log(req.body);
+        if(err){
+            res.send({err: err})
+        } 
+        if({results: results}) {
+            res.send(results)
+        }
+    })
+})
+
+router.post('/addbubbleitem', upload.none(), (req, res) => {
+    models.addBubble(req.body, (err, results) => {
+        console.log(req.body);
+        if(err){
+            res.send({err: err})
+        } 
+        if({results: results}) {
+            res.send(results)
+        }
+    })
+})
+
 
 module.exports = router

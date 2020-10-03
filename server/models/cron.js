@@ -1,5 +1,6 @@
 var CronJob = require('cron').CronJob;
 let pool = require('../../config/connections')
+let notifier = require('./notifications')
 
 var job = new CronJob('15 * * * * *', function() {
 pool.query('SELECT * FROM users', (err, res) => {
@@ -14,7 +15,8 @@ pool.query('SELECT * FROM users', (err, res) => {
                 var qPicker = Math.floor(Math.random() * filteredArr.length)
 
                 pool.query(`UPDATE currentquestions SET question = '${filteredArr[qPicker]}' WHERE user = '${res[i]['username']}'`, (err, updateres) => {
-                    console.log(err, updateres);
+                    console.log(err, updateres, res[0]['username']);
+                    notifier.notifications(res[0]['username'])
                 })
             }
         })
@@ -22,4 +24,4 @@ pool.query('SELECT * FROM users', (err, res) => {
 })
 
 })
-job.start()
+// job.start()

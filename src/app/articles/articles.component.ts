@@ -9,17 +9,32 @@ import { ArticleService } from '../article.service';
   styleUrls: ['./articles.component.css']
 })
 export class ArticlesComponent implements OnInit {
+  
+  articleList = []
+  liked = false
 
   constructor(private http: HttpClient, private router: Router, private articleServ: ArticleService) { }
-  articleList = []
+  
 
   articlePage(article) {
     this.articleServ.article = article
     this.router.navigateByUrl('/articlepage')
   }
-
+  like(e, article) {
+    console.log("liked", e.target, article);
+    e.target.style.backgroundColor = "tomato"
+    var likedArticle = {
+      user: localStorage.getItem('user'),
+      title: article['title'],
+      liked: this.liked
+    } 
+    this.http.post('http://localhost:3001/api/management/likedarticles', likedArticle).subscribe((res) => {
+      console.log(res);
+    })
+  }
   ngOnInit(): void {
-    this.http.get(`http://localhost:3001/api/management/getarticles`).subscribe((res:  any[]) => {
+    var user = localStorage.getItem('user')
+    this.http.post(`http://localhost:3001/api/management/getarticles`, {res: user}).subscribe((res:  any[]) => {
       console.log(res);
       this.articleList = res
     })

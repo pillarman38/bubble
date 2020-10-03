@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { ReactiveFormsModule, FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { passValidator } from './passvalidator';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

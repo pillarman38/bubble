@@ -1,0 +1,11 @@
+<p>What's in your bubble?</p>
+<form [formGroup]="bubbleEntry" (ngSubmit)="submitBubbleEntry()">
+    <p>Bubble item:</p>
+    <input type="text" formControlName="entry">
+    <button type="submit">Submit</button>
+</form>
+<div *ngFor="let item of bubbleItems">
+    <div class="bubble">
+        <p>{{item.entry}}</p>
+    </div>
+</div>
