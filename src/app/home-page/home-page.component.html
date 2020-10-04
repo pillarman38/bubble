@@ -1,11 +1,15 @@
-<p>What's in your bubble?</p>
+<p>Who's in your bubble?</p>
 <form [formGroup]="bubbleEntry" (ngSubmit)="submitBubbleEntry()">
-    <p>Bubble item:</p>
+    <p>People in your bubble:</p>
     <input type="text" formControlName="entry">
     <button type="submit">Submit</button>
 </form>
 <div *ngFor="let item of bubbleItems">
-    <div class="bubble">
-        <p>{{item.entry}}</p>
+    <div class="bubbleContainer">
+        <div class="bubble"></div> 
+        <p class="bubbleName">{{item.entry}}</p>
+        <div class="removeBubble" (click)="removeName(item)">
+            <div class="rectangle"></div>
+        </div> 
     </div>
 </div>

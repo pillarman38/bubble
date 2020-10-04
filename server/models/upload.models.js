@@ -249,6 +249,14 @@ let routeFunctions = {
                 callback(err, res)
             })
         })
+    },
+    kickout: (kicked, callback) => {
+        pool.query(`DELETE FROM personalbubble WHERE user = '${kicked['user']}' AND entry = '${kicked['item']['entry']}'`, (err, res) => {
+            pool.query(`SELECT * FROM personalbubble WHERE user = '${kicked['user']}'`,(error, resp) => {
+                console.log(error, resp);
+                callback(error, resp)
+            })
+        })
     }
 }
 

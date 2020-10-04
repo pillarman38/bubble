@@ -15,11 +15,13 @@ import { BubblesComponent } from './bubbles/bubbles.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticlePageComponent } from './article-page/article-page.component';
+import { JournalComponent } from './journal/journal.component';
 
 var appRoutes: Routes  = [
   {path: "login", component: LoginComponent},
   {path: "homepage", component: HomePageComponent},
   {path: "articles", component: ArticlesComponent},
+  {path: "journal", component: JournalComponent},
   {path: "articlepage", component: ArticlePageComponent},
   {path: "weeklyQuestion", component: WeeklyQuestionComponent},
   {path: "login", component: LoginComponent},
@@ -41,7 +43,8 @@ var appRoutes: Routes  = [
     BubblesComponent,
     QuestionsComponent,
     ArticlesComponent,
-    ArticlePageComponent
+    ArticlePageComponent,
+    JournalComponent
   ],
   imports: [
     BrowserModule,

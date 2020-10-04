@@ -146,5 +146,15 @@ router.post('/addbubbleitem', upload.none(), (req, res) => {
     })
 })
 
+router.post('/kickout', upload.none(), (req, res) => {
+    models.kickout(req.body, (err, results) => {
+        if(err){
+            res.send({err: err})
+        } 
+        if({results: results}) {
+            res.send(results)
+        }
+    })
+})
 
 module.exports = router

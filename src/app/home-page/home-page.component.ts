@@ -39,6 +39,17 @@ export class HomePageComponent implements OnInit {
     })
   }
 
+  removeName(item) {
+    var rmObj = {
+      user: localStorage.getItem('user'),
+      item: item
+    }
+    this.http.post('http://localhost:3001/api/management/kickout', rmObj).subscribe((res) => {
+      console.log(res);
+      this.bubbleItems = res
+    })
+  }
+
   ngOnInit(): void {
     this.http.post(`http://localhost:3001/api/management/getbubble`, {user: this.user}).subscribe((res) => {
       console.log(res);

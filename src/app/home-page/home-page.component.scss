@@ -4,4 +4,34 @@
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
+  margin-top: 5%;
+  position: absolute;
+}
+.bubbleContainer {
+  width: 200px;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #3498db;
+  position: relative;
+}
+.bubbleName {
+  margin-left: 25px;
+}
+.removeBubble {
+  height: 25px;
+  width: 25px;
+  background-color: rgb(255, 0, 0);
+  border-radius: 50%;
+  float: right;
+  margin-top: -20%;
+  position: relative;
+}
+.rectangle {
+  width: 20px;
+  height: 5px;
+  background-color: white;
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 2px;
 }
