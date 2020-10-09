@@ -11,8 +11,6 @@
     height: 100%;
     position: absolute;
 }
-
-
 .heart:before, .heart:after { 
   position: absolute; 
   content: ""; 
@@ -34,10 +32,6 @@
   transform: rotate(45deg); 
   transform-origin :100% 100%; 
 }
-
-
-
-
 .heartLiked:before, .heartLiked:after { 
   position: absolute; 
   content: ""; 

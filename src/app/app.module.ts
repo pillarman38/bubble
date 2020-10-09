@@ -23,6 +23,8 @@ import { BFComponent } from './bf/bf.component';
 import { ThoughtComponent } from './thought/thought.component';
 import { FiftyComponent } from './fifty/fifty.component';
 import { OneThirdComponent } from './one-third/one-third.component';
+import { MediataionComponent } from './mediataion/mediataion.component';
+import { ReflectionsComponent } from './reflections/reflections.component';
 
 var appRoutes: Routes  = [
   {path: "login", component: LoginComponent},
@@ -42,7 +44,9 @@ var appRoutes: Routes  = [
   {path: "whoareyou", component: WhoAreYouComponent},
   {path: "thought", component: ThoughtComponent},
   {path: "fifty", component: FiftyComponent},
-  {path: "onethird", component: OneThirdComponent}
+  {path: "onethird", component: OneThirdComponent},
+  {path: "meditation", component: MediataionComponent},
+  {path: "reflections", component: ReflectionsComponent}
 ]
 
 @NgModule({
@@ -65,7 +69,9 @@ var appRoutes: Routes  = [
     BFComponent,
     ThoughtComponent,
     FiftyComponent,
-    OneThirdComponent
+    OneThirdComponent,
+    MediataionComponent,
+    ReflectionsComponent
   ],
   imports: [
     BrowserModule,

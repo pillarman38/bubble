@@ -1,5 +1,4 @@
 <div class="loginField">
-    
     <div class="warning" #warning *ngIf="loginOrSignUp">
         <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit()">
         <input type="text" id="" #usernameOrEmail class="loginFields" placeholder="username or email" formControlName="username" (keydown.enter)="handleKeyboardEvent($event)">

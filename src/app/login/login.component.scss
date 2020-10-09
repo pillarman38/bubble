@@ -8,135 +8,156 @@ $bubbleSpacing:30;
     transition: 0.3s background-color;
 }
 
-.loginField {
-    max-width: 800px;
-	margin: 100px auto;
-	padding: 0px 0;
-	height: 500px;
-    text-align: center;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-.loginFields {
-    font-family: "Roboto", sans-serif;
-    outline: 0;
-    background: #f2f2f2;
-    width: 50%;
-    border: 0;
-    padding: 15px;
-    font-size: 14px;
-    margin-bottom: 30px;
-}
-.loginFieldsWarning{
-    font-family: "Roboto", sans-serif;
-    outline: 0;
-    background: #f2f2f2;
-    width: 50%;
-    border: 0;
-    padding: 15px;
-    font-size: 14px;
-    margin-bottom: 30px;
-    border: 5px solid red;
-}
-.loginSignupBtns:not(hover) {
-    font-family: "Roboto", sans-serif;
-    text-transform: uppercase;
-    outline: 0;
-    background: coral;
-    width: 50%;
-    border: 0;
-    padding: 15px;
-    color: #FFFFFF;
-    font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
-    cursor: pointer;
-    transition: 0.3s background-color;
-}
-.loginSignupBtns:hover {
-    @include btHover()
-}
-.signupSpotContainer {
-    position: relative;
-    width: 50%;
-    height: 100%;
-    float: right;
-    background: rgb(2,0,36);
-    background: linear-gradient(14deg, rgba(2,0,36,1) 0%, rgb(197, 66, 105) 45%, rgb(218, 12, 115) 97%);
-    z-index: 1;
-}
+
 .signupSpot{
-    
     height: 100%;
     margin: 80px auto;
 }
-.warning {
-    margin-top: 80px;
-    width: 50%;
-    height: 100%;
-    float: right;
+
+@media (max-width: 900px) {
+    .loginField {
+        max-width: 400px;
+        margin: auto;
+        z-index: 1;
+        padding: 0px 0;
+        height: 500px;
+        text-align: center;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+    .loginFields {
+        font-family: "Roboto", sans-serif;
+        outline: 0;
+        background: #f2f2f2;
+        width: 100%;
+        border: 0;
+        padding: 15px;
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+    .loginFieldsWarning{
+        font-family: "Roboto", sans-serif;
+        outline: 0;
+        background: #f2f2f2;
+        width: 50%;
+        border: 0;
+        padding: 15px;
+        font-size: 14px;
+        margin-bottom: 30px;
+        border: 5px solid red;
+    }
+    .loginSignupBtns:not(hover) {
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        outline: 0;
+        background: coral;
+        width: 50%;
+        border: 0;
+        padding: 15px;
+        color: #FFFFFF;
+        font-size: 14px;
+        -webkit-transition: all 0.3 ease;
+        transition: all 0.3 ease;
+        cursor: pointer;
+        transition: 0.3s background-color;
+    }
+    .loginSignupBtns:hover {
+        @include btHover()
+    }
+    .warning {
+        margin-top: 80px;
+        width: 50%;
+        height: 100%;
+        margin: 0 auto;
+    }
 }
 
-body {
-  background: rgba(2,0,36,1);
-}
-.triangles {
-    height: 100%;
-    width: 100%;
-    border: 2px solid black;
-    position: absolute;
-    z-index: -1;
+@media (min-width: 900px) {
+    .loginField {
+        max-width: 800px;
+        margin: auto;
+        padding: 0px 0;
+        height: 500px;
+        text-align: center;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+    .warning {
+        margin-top: 80px;
+        width: 50%;
+        height: 100%;
+        float: right;
+    }
+    .signupSpotContainer {
+        position: relative;
+        width: 50%;
+        height: 100%;
+        float: right;
+        background: rgb(2,0,36);
+        background: linear-gradient(14deg, rgba(2,0,36,1) 0%, rgb(197, 66, 105) 45%, rgb(218, 12, 115) 97%);
+        z-index: 1;
+    }
 
-  overflow: hidden;
-
-  background: rgb(40,4,93);
-  background: linear-gradient(180deg, rgba(40,4,93,1) 0%, rgba(2,0,36,1) 100%);
-  border-bottom: 1px solid rgba(40,4,93,1);
-  .bubbles {
-    position: absolute;
-    margin-top: 550px;
-    width: $bubbleDia + px;
-    height: $bubbleDia + px;
-    z-index: -1;
-    // margin-left: -200%;
-    // left: -100%;
-    background: transparent;
-    
-    border-radius: 50%;
-    @for $i from 1 through 12 {
-      &:nth-child(#{$i}) { 
-        box-shadow: 
-          random($bubbleSpacing) + vw (random(10) * -1)+px 0 2 + px #{nth($htmlCols, random(length($htmlCols)))},
-          random($bubbleSpacing) + vw (random(20) * -1)+px 0 3 + px #{nth($htmlCols, random(length($htmlCols)))},
-          random($bubbleSpacing) + vw (random(30) * -1)+px 0 1 + px #{nth($htmlCols, random(length($htmlCols)))},
-          random($bubbleSpacing) + vw (random(5) * -1)+px 0 5 + px #{nth($htmlCols, random(length($htmlCols)))},
-          random($bubbleSpacing) + vw (random(18) * -1)+px 0 6 + px #{nth($htmlCols, random(length($htmlCols)))},
-          random($bubbleSpacing) + vw (random(30) * -1)+px 0 3 + px #{nth($htmlCols, random(length($htmlCols)))},
-          random($bubbleSpacing) + vw (random(12) * -1)+px 0 5 + px #{nth($htmlCols, random(length($htmlCols)))},
-          random($bubbleSpacing) + vw (random(30) * -1)+px 0 5 + px #{nth($htmlCols, random(length($htmlCols)))},
-          random($bubbleSpacing) + vw (random(40) * -1)+px 0 2 + px #{nth($htmlCols, random(length($htmlCols)))},
-          random($bubbleSpacing) + vw (random(10) * -1)+px 0 5 + px #{nth($htmlCols, random(length($htmlCols)))},
-          random($bubbleSpacing) + vw (random(20) * -1)+px 0 2 + px #{nth($htmlCols, random(length($htmlCols)))},
-          random($bubbleSpacing) + vw (random(4) * -1)+px 0 5 + px #{nth($htmlCols, random(length($htmlCols)))},
-          random($bubbleSpacing) + vw (random(20) * -1)+px 0 2 + px #{nth($htmlCols, random(length($htmlCols)))},
-          random($bubbleSpacing) + vw (random(30) * -1)+px 0 1 + px #{nth($htmlCols, random(length($htmlCols)))},
-          random($bubbleSpacing) + vw (random(4) * -1)+px 0 6 + px #{nth($htmlCols, random(length($htmlCols)))};
-          animation: bubbleUp (random(70) + 40) + s linear random(20) + s infinite;
+    body {
+        background: rgba(2,0,36,1);
       }
-    }//end for
-  }//end bubbles
-}
-
-@keyframes bubbleUp {
-    from {
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(-($canvasH + 50) + rem);
-    }
-}
-.alertSignUp {
-    color: white;
-}
-#emailInUse {
-    border: 5px solid red;
+      .triangles {
+          height: 100%;
+          width: 100%;
+          border: 2px solid black;
+          position: absolute;
+          z-index: -1;
+      
+        overflow: hidden;
+      
+        background: rgb(40,4,93);
+        background: linear-gradient(180deg, rgba(40,4,93,1) 0%, rgba(2,0,36,1) 100%);
+        border-bottom: 1px solid rgba(40,4,93,1);
+        .bubbles {
+          position: absolute;
+          margin-top: 550px;
+          width: $bubbleDia + px;
+          height: $bubbleDia + px;
+          z-index: -1;
+          // margin-left: -200%;
+          // left: -100%;
+          background: transparent;
+          
+          border-radius: 50%;
+          @for $i from 1 through 12 {
+            &:nth-child(#{$i}) { 
+              box-shadow: 
+                random($bubbleSpacing) + vw (random(10) * -1)+px 0 2 + px #{nth($htmlCols, random(length($htmlCols)))},
+                random($bubbleSpacing) + vw (random(20) * -1)+px 0 3 + px #{nth($htmlCols, random(length($htmlCols)))},
+                random($bubbleSpacing) + vw (random(30) * -1)+px 0 1 + px #{nth($htmlCols, random(length($htmlCols)))},
+                random($bubbleSpacing) + vw (random(5) * -1)+px 0 5 + px #{nth($htmlCols, random(length($htmlCols)))},
+                random($bubbleSpacing) + vw (random(18) * -1)+px 0 6 + px #{nth($htmlCols, random(length($htmlCols)))},
+                random($bubbleSpacing) + vw (random(30) * -1)+px 0 3 + px #{nth($htmlCols, random(length($htmlCols)))},
+                random($bubbleSpacing) + vw (random(12) * -1)+px 0 5 + px #{nth($htmlCols, random(length($htmlCols)))},
+                random($bubbleSpacing) + vw (random(30) * -1)+px 0 5 + px #{nth($htmlCols, random(length($htmlCols)))},
+                random($bubbleSpacing) + vw (random(40) * -1)+px 0 2 + px #{nth($htmlCols, random(length($htmlCols)))},
+                random($bubbleSpacing) + vw (random(10) * -1)+px 0 5 + px #{nth($htmlCols, random(length($htmlCols)))},
+                random($bubbleSpacing) + vw (random(20) * -1)+px 0 2 + px #{nth($htmlCols, random(length($htmlCols)))},
+                random($bubbleSpacing) + vw (random(4) * -1)+px 0 5 + px #{nth($htmlCols, random(length($htmlCols)))},
+                random($bubbleSpacing) + vw (random(20) * -1)+px 0 2 + px #{nth($htmlCols, random(length($htmlCols)))},
+                random($bubbleSpacing) + vw (random(30) * -1)+px 0 1 + px #{nth($htmlCols, random(length($htmlCols)))},
+                random($bubbleSpacing) + vw (random(4) * -1)+px 0 6 + px #{nth($htmlCols, random(length($htmlCols)))};
+                animation: bubbleUp (random(70) + 40) + s linear random(20) + s infinite;
+            }
+          }//end for
+        }//end bubbles
+      }
+      
+      @keyframes bubbleUp {
+          from {
+              transform: translateY(0);
+          }
+          to {
+              transform: translateY(-($canvasH + 50) + rem);
+          }
+      }
+      .alertSignUp {
+          color: white;
+      }
+      #emailInUse {
+          border: 5px solid red;
+      }
 }
