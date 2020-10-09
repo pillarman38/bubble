@@ -123,7 +123,7 @@ router.post('/likedarticles', upload.none(), (req, res) => {
 })
 
 router.post('/getbubble', upload.none(), (req, res) => {
-    models.getBubble(req.body, (err, results) => {
+    models.getBubbles(req.body, (err, results) => {
         console.log(req.body);
         if(err){
             res.send({err: err})
@@ -134,27 +134,27 @@ router.post('/getbubble', upload.none(), (req, res) => {
     })
 })
 
-router.post('/addbubbleitem', upload.none(), (req, res) => {
-    models.addBubble(req.body, (err, results) => {
-        console.log(req.body);
-        if(err){
-            res.send({err: err})
-        } 
-        if({results: results}) {
-            res.send(results)
-        }
-    })
-})
+// router.post('/addbubbleitem', upload.none(), (req, res) => {
+//     models.addBubble(req.body, (err, results) => {
+//         console.log(req.body);
+//         if(err){
+//             res.send({err: err})
+//         } 
+//         if({results: results}) {
+//             res.send(results)
+//         }
+//     })
+// })
 
-router.post('/kickout', upload.none(), (req, res) => {
-    models.kickout(req.body, (err, results) => {
-        if(err){
-            res.send({err: err})
-        } 
-        if({results: results}) {
-            res.send(results)
-        }
-    })
-})
+// router.post('/kickout', upload.none(), (req, res) => {
+//     models.kickout(req.body, (err, results) => {
+//         if(err){
+//             res.send({err: err})
+//         } 
+//         if({results: results}) {
+//             res.send(results)
+//         }
+//     })
+// })
 
 module.exports = router

@@ -15,19 +15,25 @@ export class ArticlesComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router, private articleServ: ArticleService) { }
   
-
   articlePage(article) {
     this.articleServ.article = article
     this.router.navigateByUrl('/articlepage')
   }
   like(e, article) {
-    console.log("liked", e.target, article);
-    e.target.style.backgroundColor = "tomato"
+    console.log(article);
+    
+    if(article['liked'] == false) {
+      article['liked'] = true
+    } else {
+      article['liked'] = false
+    }
     var likedArticle = {
       user: localStorage.getItem('user'),
       title: article['title'],
-      liked: this.liked
+      liked: article['liked']
     } 
+    console.log(likedArticle);
+    
     this.http.post('http://localhost:3001/api/management/likedarticles', likedArticle).subscribe((res) => {
       console.log(res);
     })

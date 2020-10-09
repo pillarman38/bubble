@@ -19,36 +19,6 @@ export class HomePageComponent implements OnInit {
       entry: ["", Validators.required],
     });
   }
-  
-  submitBubbleEntry() {
-    let formData = new FormData();
-    var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
-    formData.append('entry', this.bubbleEntry.get('entry').value);
-    formData.append('user', this.user)
-    console.log(formData);
-
-    let headers = new HttpHeaders({
-      'Content-Type': 'multipart/form-data'
-    })
-
-    let options = { headers: headers };
-
-    this.http.post('http://localhost:3001/api/management/addbubbleitem', formData).subscribe((res) => {
-      console.log(res)
-      this.trackerServ.changeMsg(res)
-    })
-  }
-
-  removeName(item) {
-    var rmObj = {
-      user: localStorage.getItem('user'),
-      item: item
-    }
-    this.http.post('http://localhost:3001/api/management/kickout', rmObj).subscribe((res) => {
-      console.log(res);
-      this.bubbleItems = res
-    })
-  }
 
   ngOnInit(): void {
     this.http.post(`http://localhost:3001/api/management/getbubble`, {user: this.user}).subscribe((res) => {

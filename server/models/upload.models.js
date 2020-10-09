@@ -168,7 +168,6 @@ let routeFunctions = {
                 callback(error, ret)
             }) 
             }
-            
         })
     },
     getArticles: (user, callback) => {
@@ -234,30 +233,30 @@ let routeFunctions = {
             }
         })
     },
-    getBubble: (user, callback) => {
+    getBubbles: (user, callback) => {
         console.log(user);
         pool.query(`SELECT * FROM personalbubble WHERE user = '${user['user']}'`,(err, res) => {
             console.log(err, res);
             callback(err, res)
         })
     },
-    addBubble: (bubble, callback) => {
-        pool.query(`INSERT INTO personalbubble SET ?`, bubble, (err, res) => {
-            console.log(err, res);
-            pool.query(`SELECT * FROM personalbubble WHERE user = '${bubble['user']}'`,(err, res) => {
-                console.log(err, res);
-                callback(err, res)
-            })
-        })
-    },
-    kickout: (kicked, callback) => {
-        pool.query(`DELETE FROM personalbubble WHERE user = '${kicked['user']}' AND entry = '${kicked['item']['entry']}'`, (err, res) => {
-            pool.query(`SELECT * FROM personalbubble WHERE user = '${kicked['user']}'`,(error, resp) => {
-                console.log(error, resp);
-                callback(error, resp)
-            })
-        })
-    }
+    // addBubble: (bubble, callback) => {
+    //     pool.query(`INSERT INTO personalbubble SET ?`, bubble, (err, res) => {
+    //         console.log(err, res);
+    //         pool.query(`SELECT * FROM personalbubble WHERE user = '${bubble['user']}'`,(err, res) => {
+    //             console.log(err, res);
+    //             callback(err, res)
+    //         })
+    //     })
+    // },
+    // kickout: (kicked, callback) => {
+    //     pool.query(`DELETE FROM personalbubble WHERE user = '${kicked['user']}' AND entry = '${kicked['item']['entry']}'`, (err, res) => {
+    //         pool.query(`SELECT * FROM personalbubble WHERE user = '${kicked['user']}'`,(error, resp) => {
+    //             console.log(error, resp);
+    //             callback(error, resp)
+    //         })
+    //     })
+    // }
 }
 
 module.exports = routeFunctions

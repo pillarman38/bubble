@@ -16,6 +16,13 @@ import { QuestionsComponent } from './questions/questions.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticlePageComponent } from './article-page/article-page.component';
 import { JournalComponent } from './journal/journal.component';
+import { SerenityBubbleComponent } from './serenity-bubble/serenity-bubble.component';
+import { ControlBubbleComponent } from './control-bubble/control-bubble.component';
+import { WhoAreYouComponent } from './who-are-you/who-are-you.component';
+import { BFComponent } from './bf/bf.component';
+import { ThoughtComponent } from './thought/thought.component';
+import { FiftyComponent } from './fifty/fifty.component';
+import { OneThirdComponent } from './one-third/one-third.component';
 
 var appRoutes: Routes  = [
   {path: "login", component: LoginComponent},
@@ -28,7 +35,14 @@ var appRoutes: Routes  = [
   {path: "bubbles", component: BubblesComponent},
   {path: "questions", component: QuestionsComponent},
   {path: "successfulverification", component: SuccesfulVerificationComponent},
-  {path: "emailverify/:key", component: EmailVerifyComponent}
+  {path: "emailverify/:key", component: EmailVerifyComponent},
+  {path: "serenitybubble", component: SerenityBubbleComponent},
+  {path: "control", component: ControlBubbleComponent},
+  {path: "bf", component: BFComponent},
+  {path: "whoareyou", component: WhoAreYouComponent},
+  {path: "thought", component: ThoughtComponent},
+  {path: "fifty", component: FiftyComponent},
+  {path: "onethird", component: OneThirdComponent}
 ]
 
 @NgModule({
@@ -44,7 +58,14 @@ var appRoutes: Routes  = [
     QuestionsComponent,
     ArticlesComponent,
     ArticlePageComponent,
-    JournalComponent
+    JournalComponent,
+    SerenityBubbleComponent,
+    ControlBubbleComponent,
+    WhoAreYouComponent,
+    BFComponent,
+    ThoughtComponent,
+    FiftyComponent,
+    OneThirdComponent
   ],
   imports: [
     BrowserModule,
