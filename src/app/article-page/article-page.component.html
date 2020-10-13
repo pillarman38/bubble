@@ -1,8 +1,11 @@
-<div *ngIf="liked">
-    <div class="heartLiked"></div>
+<div class="container">
+    <div *ngIf="liked">
+        <div class="heartLiked" (click)="like(article)"></div>
+    </div>
+    <div *ngIf="!liked">
+        <div class="heart" (click)="like(article)"></div>
+    </div>
+    <div id="article">
+        <div [innerHTML]="article.article"></div>
+    </div>
 </div>
-<div *ngIf="!liked">
-    <div class="heart"></div>
-</div>
-
-<div [innerHTML]="article.article"></div>

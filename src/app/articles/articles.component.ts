@@ -27,15 +27,18 @@ export class ArticlesComponent implements OnInit {
     } else {
       article['liked'] = false
     }
+
     var likedArticle = {
       user: localStorage.getItem('user'),
       title: article['title'],
-      liked: article['liked']
+      article: article['article']
     } 
     console.log(likedArticle);
     
     this.http.post('http://localhost:3001/api/management/likedarticles', likedArticle).subscribe((res) => {
-      console.log(res);
+      this.liked = res[0]['liked']
+      console.log("hiiiiiiiiiii", res);
+      
     })
   }
   ngOnInit(): void {

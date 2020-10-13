@@ -8,7 +8,6 @@ $bubbleSpacing:30;
     transition: 0.3s background-color;
 }
 
-
 .signupSpot{
     height: 100%;
     margin: 80px auto;
@@ -16,13 +15,19 @@ $bubbleSpacing:30;
 
 @media (max-width: 900px) {
     .loginField {
-        max-width: 400px;
+        max-width: 800px;
         margin: auto;
-        z-index: 1;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin-top: 50px;
         padding: 0px 0;
         height: 500px;
+        width: 400px;
         text-align: center;
         box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        position: absolute;
     }
     .loginFields {
         font-family: "Roboto", sans-serif;
@@ -64,10 +69,10 @@ $bubbleSpacing:30;
         @include btHover()
     }
     .warning {
-        margin-top: 80px;
+        // margin-top: 80px;
         width: 50%;
         height: 100%;
-        margin: 0 auto;
+        margin:  80px auto;
     }
 }
 
@@ -75,10 +80,27 @@ $bubbleSpacing:30;
     .loginField {
         max-width: 800px;
         margin: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin-top: 50px;
         padding: 0px 0;
         height: 500px;
+        width: 800px;
         text-align: center;
         box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        position: absolute;
+    }
+    .loginFields {
+        font-family: "Roboto", sans-serif;
+        outline: 0;
+        background: #f2f2f2;
+        width: 50%;
+        border: 0;
+        padding: 15px;
+        font-size: 14px;
+        margin-bottom: 30px;
     }
     .warning {
         margin-top: 80px;
@@ -95,7 +117,35 @@ $bubbleSpacing:30;
         background: linear-gradient(14deg, rgba(2,0,36,1) 0%, rgb(197, 66, 105) 45%, rgb(218, 12, 115) 97%);
         z-index: 1;
     }
-
+    .loginFieldsWarning{
+        font-family: "Roboto", sans-serif;
+        outline: 0;
+        background: #f2f2f2;
+        width: 50%;
+        border: 0;
+        padding: 15px;
+        font-size: 14px;
+        margin-bottom: 30px;
+        border: 5px solid red;
+    }
+    .loginSignupBtns:not(hover) {
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        outline: 0;
+        background: coral;
+        width: 50%;
+        border: 0;
+        padding: 15px;
+        color: #FFFFFF;
+        font-size: 14px;
+        -webkit-transition: all 0.3 ease;
+        transition: all 0.3 ease;
+        cursor: pointer;
+        transition: 0.3s background-color;
+    }
+    .loginSignupBtns:hover {
+        @include btHover()
+    }
     body {
         background: rgba(2,0,36,1);
       }

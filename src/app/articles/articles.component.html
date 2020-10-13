@@ -1,4 +1,4 @@
-<div *ngFor="let article of articleList">
+<div *ngFor="let article of articleList" id="list">
     <p>{{article.title}}</p>
     <div *ngIf="article.liked">
         <div class="heartLiked" (click)="like($event, article)"></div>

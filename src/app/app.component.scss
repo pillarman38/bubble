@@ -1,76 +1,75 @@
 #outlet  {
   margin-left: 50px;
 }
-@media (min-width: 900px) {
-  .header {
-    position: fixed;
-    min-height: 45px;
-    background: coral;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
+.header {
+  position: fixed;
+  height: 50px;
+  background: coral;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
-
+@media (min-width: 900px) {
 .button:not(hover) {
+  padding-top: 17px;
+  padding-bottom: 17px;
   text-decoration: none;
   color: #fff;
-  line-height: 50px;;
+  line-height: 50px;
   padding: 0px 24px;
   background-color: transparent;
   height: 100%;
   transition: 0.3s background-color;
 }
 .button:hover {
+  padding-top: 17px;
+  padding-bottom: 17px;
   text-decoration: none;
   background-color: rgb(94, 94, 94);
   line-height: 50px;
   transition: 0.3s background-color;
 }
 .logout:not(hover) {
-color: #fff;
-line-height: 50px;
-padding: 0px 24px;
-background-color: transparent;
-height: 100%;
-transition: 0.3s background-color;
-margin-left: auto;
-order: 1;
+  color: #fff;
+  line-height: 50px;
+  padding: 0px 24px;
+  background-color: transparent;
+  height: 100%;
+  transition: 0.3s background-color;
+  margin-left: auto;
+  order: 1;
 }
 .logout:hover {
-text-decoration: none;
-background-color: rgb(94, 94, 94);
-line-height: 50px;
-transition: 0.3s background-color;
+  text-decoration: none;
+  background-color: rgb(94, 94, 94);
+  line-height: 50px;
+  transition: 0.3s background-color;
 }
 .logout:not(hover) {
-color: #fff;
-line-height: 50px;
-padding: 0px 24px;
-background-color: transparent;
-height: 100%;
-transition: 0.3s background-color;
-margin-left: auto;
-order: 2;
+  color: #fff;
+  line-height: 50px;
+  padding: 0px 24px;
+  background-color: transparent;
+  height: 100%;
+  transition: 0.3s background-color;
+  margin-left: auto;
+  order: 2;
 }
 .logout:hover {
-text-decoration: none;
-background-color: rgb(94, 94, 94);
-line-height: 50px;
-transition: 0.3s background-color;
+  text-decoration: none;
+  background-color: rgb(94, 94, 94);
+  line-height: 50px;
+  transition: 0.3s background-color;
 }
-
-
-
 #navbarContainer{
-  width: 400px;
-  min-width: 400px;
+  width: 250px;
+  min-width: 250px;
   height: 70vh;
   background-color: #ffcc80;
   border-radius: 20px;
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-  overflow: hidden;
   position: relative;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
@@ -86,60 +85,52 @@ transition: 0.3s background-color;
 @media (max-width: 900px) {
   .bubbles {
     background-image: url("../assets/bubble.png");
-    background-size: 40px;
+    background-size: 25px;
     background-repeat: no-repeat;
   }
   .journal {
     background-image: url("../assets/PinClipart.com_dreaming-clip-art_4133227.png");
-    background-size: 40px;
+    background-size: 25px;
     background-repeat: no-repeat;
   }
   .reflections {
     background-image: url("../assets/mirror.png");
-    background-size: 40px;
+    background-size: 25px;
     background-repeat: no-repeat;
   }
   .meditation {
     background-image: url("../assets/meditation.png");
-    background-size: 40px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+  }
+  .articles {
+    background-image: url("../assets/article.png");
+    background-size: 25px;
     background-repeat: no-repeat;
   }
   .home {
     background-image: url("../assets/home-outline-variant.png");
-    background-size: 40px;
+    background-size: 25px;
     background-repeat: no-repeat;
   }
-  .header {
-    position: fixed;
-    min-height: 45px;
-    background: coral;
-    width: 50px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    float: left;
-}
 
-.button:not(hover) {
-  text-decoration: none;
-  color: #fff;
-  line-height: 50px;;
-  padding: 0px 24px;
-  background-color: transparent;
-  height: 100%;
-  transition: 0.3s background-color;
-  color: transparent;
-}
-.button:hover {
-  text-decoration: none;
-  background-color: rgb(94, 94, 94);
-  line-height: 50px;
-  transition: 0.3s background-color;
-}
-
-
-
-
-
-
+  .button:not(hover) {
+    // border: 2px solid black;
+    background-position: center;
+    text-decoration: none;
+    color: #fff;
+    line-height: 50px;
+    padding: 0px 5px;
+    background-color: transparent;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    transition: 0.3s background-color;
+    color: transparent;
+  }
+  .button:hover {
+    text-decoration: none;
+    background-color: rgb(94, 94, 94);
+    line-height: 50px;
+    transition: 0.3s background-color;
+  }
 }

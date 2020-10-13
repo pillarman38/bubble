@@ -112,7 +112,7 @@ router.post('/answerquestion', upload.none(), (req, res) => {
 
 router.post('/likedarticles', upload.none(), (req, res) => {
     models.likedArticles(req.body, (err, results) => {
-        console.log(req.body);
+        console.log(err, results);
         if(err){
             res.send({err: err})
         } 

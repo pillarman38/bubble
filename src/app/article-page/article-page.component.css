@@ -53,42 +53,43 @@
 
 
 
-  .heartLiked {
-    z-index: 1;
-    height: 10px;
-    width: 10px;
-    position: absolute;
-    background-color: tomato;
-    border-bottom: 5px solid black;
-    border-right: 5px solid black;
-    transform: rotate(45deg);
+  .heart:before, .heart:after { 
+    position: absolute; 
+    content: ""; 
+    left: 50px;
+    width: 50px; 
+    height: 80px; 
+    background:#999999; 
+    border-radius: 50px 50px 0 0; 
+    transform: rotate(-45deg); 
+    transform-origin: 0 100%; 
+    -webkit-box-shadow: inset -10px 0px 23px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset -10px 0px 23px -9px rgba(0,0,0,0.75);
+    box-shadow: inset -10px 0px 23px -9px rgba(0,0,0,0.75);
   }
-  .heartLiked:before,
-  .heartLiked:after {
-    z-index: 1;
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: tomato;
-    border-radius: 50%;
-    border: 5px solid transparent;
-    transform: rotate(-45deg);
-    z-index: -2;
+  .heart:after { 
+    left: 0; 
+    transform: rotate(45deg); 
+    transform-origin :100% 100%; 
   }
-  .heart:before {
-    z-index: 1;
-    top: -5px;
-    left: calc(-50% - 5px);
-    border-top-color: black;
-    border-left-color: black;
+  .heartLiked:before, .heartLiked:after { 
+    position: absolute; 
+    content: ""; 
+    left: 50px;
+    width: 50px; 
+    height: 80px; 
+    background:#f11d1d; 
+    border-radius: 50px 50px 0 0; 
+    transform: rotate(-45deg); 
+    transform-origin: 0 100%; 
+    -webkit-box-shadow: inset -10px 0px 23px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset -10px 0px 23px -9px rgba(0,0,0,0.75);
+    box-shadow: inset -10px 0px 23px -9px rgba(0,0,0,0.75);
   }
-  .heart:after {
-    z-index: 1;
-    top: calc(-50% - 5px);
-    left: -5px;
-    border-top-color: black;
-    border-right-color: black;
+  .heartLiked:after { 
+    left: 0; 
+    transform: rotate(45deg); 
+    transform-origin :100% 100%; 
   }
   .active {
     z-index: 1;
@@ -105,4 +106,13 @@
     border-top-color: blue;
     border-right-color: blue;
     background: transparent;
+  }
+  .container {
+    padding-top: 50px;
+  }
+  #article {
+    padding-top: 50px;
+    width: 80%;
+    border: 2px solid black;
+    margin: auto;
   }

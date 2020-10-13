@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit {
       password: this.password.nativeElement.value
     }
 
-    this.http.post('http://localhost:3001/api/management/login', loginForm).subscribe(res => {
+    this.http.post('http://192.168.1.86:3001/api/management/login', loginForm).subscribe(res => {
       console.log(res)
       this.loginServ.loginObj = res
       
@@ -124,7 +124,7 @@ export class LoginComponent implements OnInit {
     })
     let options = { headers: headers };
 
-    this.http.post('http://localhost:3001/api/management/signup', formData).subscribe(res => {
+    this.http.post('http://192.168.1.86:3001/api/management/signup', formData).subscribe(res => {
       console.log(res)
       this.navigation('/emailVerify', res)
     })

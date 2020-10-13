@@ -174,33 +174,38 @@ let routeFunctions = {
         console.log(user);
         pool.query(`SELECT * FROM articles`, (err, res) => {
             pool.query(`SELECT * FROM likedarticles WHERE user = '${user['res']}'`, (error, resp) => {
-                var userLikedArticleTitles = resp.map((itm) => itm['title'])
-                var allTitles = res.map((itm) => itm['title'])
                 var arr = []
+                finalArr = []
                 var arrObj = {}
-                for(var i = 0; i < allTitles.length; i++) {
-                    if(userLikedArticleTitles.includes(allTitles[i])){
-                        arrObj = {
-                            user: user,
-                            title: allTitles[i],
-                            article: res[i]['article'],
-                            liked: true
+                
+                if(res.length != resp.length) {
+                    for(var i = 0; i < res.length; i++) {
+                        if(resp[i] != undefined) {
+                            arr.push(resp[i]['title'])
+                            finalArr.push(resp[i])
+                            // console.log(i, res.length);
+                        } else {
+                            var filtered = res.filter((itm) => {
+                                if(!arr.includes(itm['title'])) {
+                                    itm['liked'] = false
+                                    return itm
+                                }
+                        })
+                        if(i == res.length - 1) {
+                            arr.push(filtered)
+                            for(var x = 0; x < filtered.length; x++) {
+                                finalArr.push(filtered[x])
+                            }
+                            // console.log(res.length, finalArr.length);
+                            // console.log(finalArr);
+                            callback(err, finalArr)
                         }
-                        arr.push(arrObj)
-                    } else {
-                        arrObj = {
-                            user: user,
-                            title: allTitles[i],
-                            article: res[i]['article'],
-                            liked: false
-                        }
-                        arr.push(arrObj)
                     }
-                    console.log(i, arr.length - 1);
-                    if(arr.length == res.length) {
-                        callback(err, arr)
-                    }
-                }
+                } 
+                } else {
+                    // console.log("else", resp);
+                    callback(error, resp)
+                }  
             })
         })
     },
@@ -210,6 +215,7 @@ let routeFunctions = {
         })
     },
     likedArticles: (article, callback) => {
+        // console.log("article", article);
         pool.query(`SELECT * FROM likedarticles WHERE user = '${article['user']}' AND title = '${article['title']}'`, (error, resp) => {
             if(resp.length == 0) {
                 console.log(article);
@@ -227,8 +233,11 @@ let routeFunctions = {
                     liked = 0
                 }
                 pool.query(`UPDATE likedarticles SET liked = '${liked}' WHERE user = '${article['user']}' AND title = '${article['title']}'`, (err, response) => {
-                    console.log(err, response);
-                    
+                    console.log("hi", err, response);
+                    pool.query(`SELECT * FROM likedarticles WHERE user = '${article['user']}' AND title = '${article['title']}'`, (error, res) => {
+                        console.log("yello", res[0]['title']);
+                        callback(error, res)
+                    })
                 })
             }
         })
