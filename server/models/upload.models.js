@@ -171,6 +171,7 @@ let routeFunctions = {
         })
     },
     getArticles: (user, callback) => {
+        console.log(user);
         pool.query(`SELECT * FROM articles`, (err, res) => {
             pool.query(`SELECT * FROM likedarticles WHERE user = '${user['res']}'`, (error, resp) => {
                 var arr = []
@@ -182,7 +183,7 @@ let routeFunctions = {
                         if(resp[i] != undefined) {
                             arr.push(resp[i]['title'])
                             finalArr.push(resp[i])
-                            // console.log(i, res.length);
+                            console.log(i, res.length);
                         } else {
                             var filtered = res.filter((itm) => {
                                 if(!arr.includes(itm['title'])) {
@@ -195,14 +196,14 @@ let routeFunctions = {
                             for(var x = 0; x < filtered.length; x++) {
                                 finalArr.push(filtered[x])
                             }
-                            // console.log(res.length, finalArr.length);
-                            // console.log(finalArr);
+                            console.log(res.length, finalArr.length);
+                            console.log(finalArr);
                             callback(err, finalArr)
                         }
                     }
                 } 
                 } else {
-                    // console.log("else", resp);
+                    console.log("else", resp);
                     callback(error, resp)
                 }  
             })
@@ -217,10 +218,10 @@ let routeFunctions = {
         // console.log("article", article);
         pool.query(`SELECT * FROM likedarticles WHERE user = '${article['user']}' AND title = '${article['title']}'`, (error, resp) => {
             if(resp.length == 0) {
-                console.log(error, resp);
+                console.log(article);
                 article['liked'] = true
-                pool.query(`INSERT INTO likedarticles SET ?`, article, (err, res) => {
-                    console.log(err, res);
+                pool.query(`INSERT INTO likedArticles SET ?`, article, (err, res) => {
+                    console.log(res);
                 })
             }
             if(resp.length != 0) {
@@ -232,7 +233,7 @@ let routeFunctions = {
                     liked = 0
                 }
                 pool.query(`UPDATE likedarticles SET liked = '${liked}' WHERE user = '${article['user']}' AND title = '${article['title']}'`, (err, response) => {
-                    // console.log("hi", err, response);
+                    console.log("hi", err, response);
                     pool.query(`SELECT * FROM likedarticles WHERE user = '${article['user']}' AND title = '${article['title']}'`, (error, res) => {
                         console.log("yello", res[0]['title']);
                         callback(error, res)
@@ -242,17 +243,12 @@ let routeFunctions = {
         })
     },
     getBubbles: (user, callback) => {
+        console.log(user);
         pool.query(`SELECT * FROM personalbubble WHERE user = '${user['user']}'`,(err, res) => {
             console.log(err, res);
             callback(err, res)
         })
     },
-    getQuotes: (ugh, callback) => {
-        pool.query(`SELECT * FROM quotes`, (err, res) => {
-            console.log(err, res)
-            callback(err, res)
-        })
-    }
     // addBubble: (bubble, callback) => {
     //     pool.query(`INSERT INTO personalbubble SET ?`, bubble, (err, res) => {
     //         console.log(err, res);
