@@ -171,7 +171,6 @@ let routeFunctions = {
         })
     },
     getArticles: (user, callback) => {
-        console.log(user);
         pool.query(`SELECT * FROM articles`, (err, res) => {
             pool.query(`SELECT * FROM likedarticles WHERE user = '${user['res']}'`, (error, resp) => {
                 var arr = []
@@ -218,10 +217,10 @@ let routeFunctions = {
         // console.log("article", article);
         pool.query(`SELECT * FROM likedarticles WHERE user = '${article['user']}' AND title = '${article['title']}'`, (error, resp) => {
             if(resp.length == 0) {
-                console.log(article);
+                console.log(error, resp);
                 article['liked'] = true
-                pool.query(`INSERT INTO likedArticles SET ?`, article, (err, res) => {
-                    console.log(res);
+                pool.query(`INSERT INTO likedarticles SET ?`, article, (err, res) => {
+                    console.log(err, res);
                 })
             }
             if(resp.length != 0) {
@@ -233,7 +232,7 @@ let routeFunctions = {
                     liked = 0
                 }
                 pool.query(`UPDATE likedarticles SET liked = '${liked}' WHERE user = '${article['user']}' AND title = '${article['title']}'`, (err, response) => {
-                    console.log("hi", err, response);
+                    // console.log("hi", err, response);
                     pool.query(`SELECT * FROM likedarticles WHERE user = '${article['user']}' AND title = '${article['title']}'`, (error, res) => {
                         console.log("yello", res[0]['title']);
                         callback(error, res)
@@ -243,12 +242,17 @@ let routeFunctions = {
         })
     },
     getBubbles: (user, callback) => {
-        console.log(user);
         pool.query(`SELECT * FROM personalbubble WHERE user = '${user['user']}'`,(err, res) => {
             console.log(err, res);
             callback(err, res)
         })
     },
+    getQuotes: (ugh, callback) => {
+        pool.query(`SELECT * FROM quotes`, (err, res) => {
+            console.log(err, res)
+            callback(err, res)
+        })
+    }
     // addBubble: (bubble, callback) => {
     //     pool.query(`INSERT INTO personalbubble SET ?`, bubble, (err, res) => {
     //         console.log(err, res);

@@ -1,0 +1,13 @@
+#pad {
+    padding-top: 50px;
+    display: flex;
+    width: 20%;
+    height: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 2px solid green;
+}
+.quoteBox {
+    border: 2px solid black;
+    
+}

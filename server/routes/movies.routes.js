@@ -133,7 +133,16 @@ router.post('/getbubble', upload.none(), (req, res) => {
         }
     })
 })
-
+router.get('/quotes', upload.none(), (req, res) => {
+    models.getQuotes(req.body, (err, results) => {
+        if(err){
+            res.send({err: err})
+        } 
+        if({results: results}) {
+            res.send(results)
+        }
+    })
+})
 // router.post('/addbubbleitem', upload.none(), (req, res) => {
 //     models.addBubble(req.body, (err, results) => {
 //         console.log(req.body);

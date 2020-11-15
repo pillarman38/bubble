@@ -25,6 +25,7 @@ import { FiftyComponent } from './fifty/fifty.component';
 import { OneThirdComponent } from './one-third/one-third.component';
 import { MediataionComponent } from './mediataion/mediataion.component';
 import { ReflectionsComponent } from './reflections/reflections.component';
+import { QuotesComponent } from './quotes/quotes.component';
 
 var appRoutes: Routes  = [
   {path: "login", component: LoginComponent},
@@ -46,7 +47,8 @@ var appRoutes: Routes  = [
   {path: "fifty", component: FiftyComponent},
   {path: "onethird", component: OneThirdComponent},
   {path: "meditation", component: MediataionComponent},
-  {path: "reflections", component: ReflectionsComponent}
+  {path: "reflections", component: ReflectionsComponent},
+  {path: "quotes", component: QuotesComponent}
 ]
 
 @NgModule({
@@ -71,7 +73,8 @@ var appRoutes: Routes  = [
     FiftyComponent,
     OneThirdComponent,
     MediataionComponent,
-    ReflectionsComponent
+    ReflectionsComponent,
+    QuotesComponent
   ],
   imports: [
     BrowserModule,
