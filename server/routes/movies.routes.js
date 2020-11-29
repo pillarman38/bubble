@@ -134,7 +134,7 @@ router.post('/getbubble', upload.none(), (req, res) => {
     })
 })
 router.get('/quotes', upload.none(), (req, res) => {
-    models.getQuotes(req.body, (err, results) => {
+    models.getQuotes((err, results) => {
         if(err){
             res.send({err: err})
         } 

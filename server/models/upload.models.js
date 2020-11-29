@@ -22,77 +22,44 @@ let routeFunctions = {
             console.log(res, err)
             if(res[0] == null) {
                 pool.query('INSERT INTO `users` SET ?', userInfo, (err, resultstwo) =>{
-                    console.log(err, resultstwo)
-
-                    var resp = JSON.stringify(resultstwo)
-                    var token = jwt.sign({
-                        username: userInfo['email'],
-                        password: userInfo['password']
-                    }, process.env.ACCESS_TOKEN_SECRET);
                     
-                    console.log("TOKEN", token);
+                    var resp = JSON.stringify(resultstwo)
 
                     const oauth2Client = new OAuth2(
-                        process.env.MAILING_SERVICE_CLIENT_ID,
-                        process.env.MAILING_SERVICE_CLIENT_SECRET,
-                        process.env.OAUTH_PLAYGROUND
-                      );
-                      const TEMPLATES = {
-                        subscribe: {
-                          fileName: 'subscribe.ejs',
-                          subject: '[ABC Inc.] Welcome to ABC Inc.',
-                        },
-                      };
-                    //   console.log(process.env);
-                        oauth2Client.setCredentials({
-                          refresh_token: process.env.MAILING_SERVICE_REFRESH_TOKEN,
-                        });
-                        const accessToken = oauth2Client.getAccessToken();
-                        const transporter = mailer.createTransport({
-                          service: 'gmail',
-                          auth: {
-                            type: 'OAuth2',
-                            user: process.env.SENDER_EMAIL_ADDRESS,
+                        process.env.MAILING_SERVICE_CLIENT_ID, // ClientID
+                        process.env.MAILING_SERVICE_CLIENT_SECRET, // Client Secret
+                        "http://192.168.1.86:3001/homepage" // Redirect URL
+                    );
+
+                    oauth2Client.setCredentials({
+                        refresh_token: process.env.MAILING_SERVICE_REFRESH_TOKEN
+                    });
+                    const accessToken = oauth2Client.getAccessToken()
+
+                    const smtpTransport = mailer.createTransport({
+                        service: "gmail",
+                        auth: {
+                            type: "OAuth2",
+                            user: "connorwoodford38@gmail.com", 
                             clientId: process.env.MAILING_SERVICE_CLIENT_ID,
                             clientSecret: process.env.MAILING_SERVICE_CLIENT_SECRET,
                             refreshToken: process.env.MAILING_SERVICE_REFRESH_TOKEN,
-                            accessToken,
-                          },
-                        });
-
-                        let mailOptions = {
-                            from: '"Connor Woodford" <connorwoodford38@gmail.com>', // sender address
-                            to: `${userInfo['email']}`, // list of receivers
-                            subject: 'Test Mail from ME using NodeJS', // Subject line
-                            text: 'Hello world ?', // plain text body
-                            html: `<b>Confirm email here: </b><a href="http://localhost:3001/emailverify/${token}">Here</a>` // html body
-                        };
-
-                        transporter.set('oauth2_provision_cb', (user, renew, callback)=>{
-                            let accessToken = userTokens[user];
-                            console.log("TOKEN", accessToken, user, userTokens)
-                            if(!accessToken){
-                                return callback(new Error('Unknown user'));
-                            }else{
-                                return callback(null, accessToken);
-                            }
-                        });
-
-                        transporter.on('token', token => {
-                            console.log('A new access token was generated');
-                            console.log('User: %s', token.user);
-                            console.log('Access Token: %s', token.accessToken);
-                            console.log('Expires: %s', new Date(token.expires));
-                        });
-                        
-                        transporter.sendMail(mailOptions, (error, info) => {
-                            console.log("hi")
-                            if (error) {
-                                console.log(error)
-                                return console.log(error);
-                            }
-                            console.log('Message %s sent: %s', info.messageId, info.response);
-                        });
+                            accessToken: accessToken
+                        }
+                    });
+                    
+                    const mailOptions = {
+                        from: "connorwoodford38@gmail.com",
+                        to: "connorwoodford@yahoo.com",
+                        subject: "Node.js Email with Secure OAuth",
+                        generateTextFromHTML: true,
+                        html: "<b>test</b>"
+                    };
+                    
+                    smtpTransport.sendMail(mailOptions, (error, response) => {
+                        error ? console.log(error) : console.log(response);
+                        smtpTransport.close();
+                    });
                     return callback({res: true})
             })
             } if(res[0] != null) {
@@ -234,12 +201,8 @@ let routeFunctions = {
                 }
                 pool.query(`UPDATE likedarticles SET liked = '${liked}' WHERE user = '${article['user']}' AND title = '${article['title']}'`, (err, response) => {
                     console.log("hi", err, response);
-                    pool.query(`SELECT * FROM likedarticles WHERE user = '${article['user']}' AND title = '${article['title']}'`, (error, res) => {
-                        console.log("yello", res[0]['title']);
-                        callback(error, res)
-                    })
                 })
-            }
+           }
         })
     },
     getBubbles: (user, callback) => {
@@ -249,6 +212,12 @@ let routeFunctions = {
             callback(err, res)
         })
     },
+    getQuotes: (callback) => {
+        pool.query(`SELECT * FROM quotes`, (err, res) => {
+            console.log(err, res);
+            callback(err, res)
+        })
+    }
     // addBubble: (bubble, callback) => {
     //     pool.query(`INSERT INTO personalbubble SET ?`, bubble, (err, res) => {
     //         console.log(err, res);

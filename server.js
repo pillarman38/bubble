@@ -1,5 +1,5 @@
 require('./config/config')
-// require('./config/mailer')
+require('./config/mailer')
 require('./server/models/cron')
 const express = require('express')
 const app = express()
